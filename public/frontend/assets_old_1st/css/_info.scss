@@ -1,0 +1,56 @@
+.information-section {
+  .info__img {
+    border: 3px solid $primary-color;
+  }
+  .sidebar {
+    .sidebar__items {
+      background-color: $color-white;
+      ul {
+        @include MarPad();
+        border-left: 2px solid $primary-color;
+        .side__links {
+          position: relative;
+          width: 100%;
+          height: 3.5rem;
+          display: flex;
+          align-items: center;
+          padding-left: 10px;
+          margin-bottom: 1px;
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0%;
+            height: 100%;
+            background-color: $primary-color;
+            transition: 0.3s all ease-in-out;
+          }
+          a {
+            position: relative;
+            color: $text-color-one;
+            font-size: 16px;
+          }
+          &.active {
+            &::before {
+              width: 100%;
+            }
+            a {
+              color: $color-white;
+            }
+          }
+          &:hover {
+            a {
+              color: $color-white;
+              transition: 0.3s all ease-in-out;
+            }
+            &::before {
+              width: 100%;
+              transition: 0.3s all ease-in-out;
+            }
+          }
+        }
+      }
+    }
+  }
+}

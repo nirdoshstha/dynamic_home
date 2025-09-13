@@ -1,0 +1,26 @@
+.notice-section {
+  .accordion {
+    .accordion-item {
+      border-radius: 0 !important;
+      margin-bottom: 5px;
+      box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+      .accordion-button {
+        border-radius: 0 !important;
+        box-shadow: none;
+        i{
+            margin-right: 5px;
+        }
+        span{
+            font-weight: 500;
+        }
+      }
+      .accordion-body{
+        .date{
+            i{
+                color: $secondary-color;
+            }
+        }
+      }
+    }
+  }
+}

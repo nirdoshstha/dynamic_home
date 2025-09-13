@@ -1,0 +1,105 @@
+.album-section {
+  .album__image-section {
+    .album__item {
+      position: relative;
+      width: 100%;
+      height: 12rem;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      transition: 0.3s all ease-in-out;
+      overflow: hidden;
+      border-radius: 6px;
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(180deg, #01509ec9 0%, #009e94db 100%);
+        opacity: 0;
+        transition: 0.3s all ease-in-out;
+        z-index: 1;
+      }
+      .album-img__holder {
+        width: 100%;
+        height: 100%;
+        img {
+          object-fit: cover;
+          object-position: center;
+          transition: 0.5s all ease-in-out;
+        }
+      }
+      .album__title {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        opacity: 0;
+        transition: 0.3s all ease-in-out;
+        z-index: 2;
+        transform: translateY(-20%);
+        padding: 10px;
+        h5 {
+          font-size: 18px;
+          color: $color-white;
+        }
+      }
+      &:hover {
+        box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+          rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+          rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        transform: scale(1.1);
+        .album-img__holder {
+          img {
+            transform: scale(1.05);
+          }
+        }
+        .album__title {
+          opacity: 1;
+          transform: translateY(0%);
+        }
+        .overlay {
+          opacity: 1;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        height: 15rem;
+      }
+    }
+  }
+}
+
+.photo__gallery-section {
+  .photo__gallery {
+    .gallery__image {
+      width: 100%;
+      height: 12rem;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      transition: 0.3s all ease-in-out;
+      img {
+        object-fit: cover;
+        object-position: center;
+        transition: 0.3s all ease-in-out;
+      }
+      &:hover {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+          rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+        img {
+          transform: scale(1.03);
+        }
+      }
+      @media screen and (max-width: 768px) {
+        height: 15rem;
+        // img{
+        //     object-fit: fill;
+        // }
+      }
+    }
+  }
+}
