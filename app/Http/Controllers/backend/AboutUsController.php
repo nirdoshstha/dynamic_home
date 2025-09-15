@@ -37,7 +37,7 @@ class AboutUsController extends BackendBaseController
 
         $request->validate([
             'name' => 'required|',
-            'category_id' => $request->type=='post' ? 'required' : 'nullable',
+            'category_id' => $request->type == 'post' ? 'required' : 'nullable',
         ]);
 
         try {
@@ -70,7 +70,7 @@ class AboutUsController extends BackendBaseController
 
         $request->validate([
             'name' => 'required',
-            'category_id' => $request->type=='post' ? 'required' : 'nullable',
+            'category_id' => $request->type == 'post' ? 'required' : 'nullable',
         ]);
 
         try {
@@ -134,6 +134,26 @@ class AboutUsController extends BackendBaseController
         }
     }
 
+    public function aboutStatusMenu(Request $request)
+    {
+        try {
+            $about = $this->model->where('type', 'page')->find($request['id']);
+            $about->status = $about->status ? '0' : '1';
+            $about->save();
+            $about = $this->model->where('type', 'page')->first();
+            $status = $about->status;
+            return response()->json([
+                'success_message' => $this->panel . ' Menu Status Changed Successfully !!',
+                'url' => route($this->base_route . 'index'),
+                'status_update' => $status,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error_message' => 'Something Went Wrong..',
+            ]);
+        }
+    }
+
     public function updatePage(Request $request, $id)
     {
         $request->validate([
@@ -149,12 +169,12 @@ class AboutUsController extends BackendBaseController
             $data['page']->image = $image_name;
         }
 
-        $data['page']->update($page +[
-            'updated_by' =>auth()->user()->id,
+        $data['page']->update($page + [
+            'updated_by' => auth()->user()->id,
         ]);
 
         return response()->json([
-            'success_message' => $this->panel.' Updated Successfully !!!',
+            'success_message' => $this->panel . ' Updated Successfully !!!',
             'url' => route($this->base_route . 'index')
         ]);
     }

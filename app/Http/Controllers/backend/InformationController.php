@@ -153,6 +153,26 @@ class InformationController extends BackendBaseController
         }
     }
 
+    public function informationStatusMenu(Request $request)
+    {
+        try {
+            $information = $this->model->where('type', 'page')->find($request['id']);
+            $information->status = $information->status ? '0' : '1';
+            $information->save();
+            $information = $this->model->where('type', 'page')->first();
+            $status = $information->status;
+            return response()->json([
+                'success_message' => $this->panel . ' Menu Status Changed Successfully !!',
+                'url' => route($this->base_route . 'index'),
+                'status_update' => $status,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error_message' => 'Something Went Wrong..',
+            ]);
+        }
+    }
+
     public function updatePage(Request $request, $id)
     {
         $request->validate([

@@ -68,6 +68,19 @@ a {
     transform: translateX(0);
 }
 
+
+
+.btn-hoverable2 {
+    border: none;
+    border-radius: 5;
+    padding: 3px 15px;
+    color: #ee7d03;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    box-shadow: #ee7d03 0px 0px 0px 2px;
+}
+
 .pagination .page-item .funBtn {
     background-color: #008fd7 !important;
 }
@@ -1641,3 +1654,75 @@ header .navbar .dropdown-menu>li:hover>.dropdown-submenu {
 }
 
 /*** Testimonial End ***/
+
+/* In home page About us design change*/
+.homepage-content-wrapper .about-section {
+    position: relative;
+    z-index: 1;
+    margin-top: -8rem;
+    margin-bottom: 6rem;
+    background: #ffffff;
+    padding: 4rem 4rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    width: 1200px;
+}
+
+.homepage-content-wrapper .about-section .about-img {
+    width: 100%;
+    height: 25rem;
+    overflow: hidden;
+    border-radius: 0 30px 0 30px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.homepage-content-wrapper .about-section .about-img img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.homepage-content-wrapper .about-section .about-desc {
+    padding-bottom: 0.8rem;
+}
+
+.homepage-content-wrapper .about-section .about-desc h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.homepage-content-wrapper .about-section .about-desc p {
+    font-size: 0.875rem;
+
+}
+
+
+@media screen and (max-width: 992px) {
+
+    .homepage-content-wrapper .about-section {
+        position: relative;
+        z-index: 1;
+        margin-top: -8rem;
+        margin-bottom: 6rem;
+        background: #ffffff;
+        padding: 0rem 0rem;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        width: auto;
+    }
+
+    .homepage-content-wrapper .about-section .about-img {
+        height: 32rem;
+    }
+
+    .homepage-content-wrapper .about-section .about-desc h1 {
+        font-size: 32px;
+        margin-bottom: 1rem;
+    }
+
+    .homepage-content-wrapper .about-section .about-desc p {
+        font-size: 0.75rem;
+    }
+}
+
+/* end Home page About us design change*/

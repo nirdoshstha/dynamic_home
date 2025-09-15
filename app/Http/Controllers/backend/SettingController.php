@@ -74,21 +74,7 @@ class SettingController extends BackendBaseController
                 $master_logo = $this->imageUpload($request->master_logo, 'setting');
                 $data['master_logo'] = $master_logo;
             }
-            // if ($request->hasFile('background_image')) {
-            //     $path = 'setting/background_image';
-            //     $request['background_image']->storePubliclyAs('uploads', $path, 'public');
-            //     $data['background_image'] = 'uploads/' . $path;
-            // }
-            // if ($request->hasFile('school_image')) {
-            //     $path = 'setting/school_image';
-            //     $request['school_image']->storePubliclyAs('uploads', $path, 'public');
-            //     $data['school_image'] = 'uploads/' . $path;
-            // }
-            // if ($request->hasFile('college_image')) {
-            //     $path = 'setting/college_image';
-            //     $request['college_image']->storePubliclyAs('uploads', $path, 'public');
-            //     $data['college_image'] = 'uploads/' . $path;
-            // }
+            
 
             $setting = Setting::create($data + [
                 'created_by' => auth()->user()->id,
@@ -156,24 +142,7 @@ class SettingController extends BackendBaseController
                 $master_logo = $this->imageUpload($request->master_logo, 'setting');
                 $data['master_logo'] = $master_logo;
             }
-            // if ($request->hasFile('background_image')) {
-            //     deleteImage($setting->background_image);
-            //     $path = 'setting/background_image.'.$request['background_image']->getClientOriginalExtension();
-            //     $request['background_image']->storePubliclyAs('uploads', $path, 'public');
-            //     $data['background_image'] = 'uploads/' . $path;
-            // }
-            // if ($request->hasFile('school_image')) {
-            //     deleteImage($setting->school_image);
-            //     $path = 'setting/school_image.'.$request['school_image']->getClientOriginalExtension();
-            //     $request['school_image']->storePubliclyAs('uploads', $path, 'public');
-            //     $data['school_image'] = 'uploads/' . $path;
-            // }
-            // if ($request->hasFile('college_image')) {
-            //     deleteImage($setting->college_image);
-            //     $path = 'setting/college_image.'.$request['college_image']->getClientOriginalExtension();
-            //     $request['college_image']->storePubliclyAs('uploads', $path, 'public');
-            //     $data['college_image'] = 'uploads/' . $path;
-            // }
+            
             $setting->update($data + [
                 'updated_by' => auth()->user()->id,
             ]);

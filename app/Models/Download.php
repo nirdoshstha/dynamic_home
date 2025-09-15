@@ -9,11 +9,12 @@ class Download extends BackendBaseModel
 {
     use HasFactory;
     protected $table = 'downloads';
-    protected $fillable =[
+    protected $fillable = [
         'title',
         'slug',
         'rank',
         'image',
+        'cover_image',
         'status',
         'created_by',
         'updated_by'

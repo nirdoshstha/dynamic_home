@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-About Us
+    About Us
 @endsection
 
 @section('seo_keyword')
@@ -12,7 +12,8 @@ About Us
 
 
 @section('content')
-<div class="informartion section-padding"
+    
+        <div class="informartion section-padding"
             style="background-image: url('{{ asset('frontend/assets/img/bg.png') }}'); background-repeat: no-repeat; background-size: cover; background-position: center; background-attachment: fixed;">
             <div class="container">
                 <div class="row align-items-center">
@@ -28,8 +29,8 @@ About Us
                         <div class="aboutus__description wow fadeInUp" data-wow-delay="0.6s"
                             style="visibility: visible; -webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
                             <!-- <div class="top__small">
-                                    <span> Since 2020 </span>
-                                </div> -->
+                                        <span> Since 2020 </span>
+                                    </div> -->
                             <div class="top__big-text">
                                 <h3>
                                     <span class="typing">{{ $data['about']->name ?? '' }}</span>
@@ -39,8 +40,8 @@ About Us
                                 “{{ $data['about']->designation ?? '' }}”
                             </div>
                             <!-- <div class="top__big-text">
-                                <h3>School Name </h3>
-                            </div> -->
+                                    <h3>School Name </h3>
+                                </div> -->
 
                             <div class="main__decription mb-5">
                                 <p> {!! $data['about']->description ?? '' !!}</p>
@@ -51,8 +52,8 @@ About Us
                 </div>
             </div>
         </div>
+     
 @endsection
 
 @push('js')
-
 @endpush

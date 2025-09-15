@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->integer('rank')->nullable();
             $table->string('image')->nullable();
+            $table->string('cover_image')->nullable();
             $table->boolean('status')->default(0);
             $table->foreignId('created_by')->constrained('users');
             $table->foreignId('updated_by')->nullable()->constrained('users');

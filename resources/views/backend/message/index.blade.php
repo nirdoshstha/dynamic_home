@@ -10,9 +10,20 @@
     <div class="pagetitle">
         <h1>Dashboard
             @if (isset($base_route))
-                {{-- @if (Route::is('setting.index')) --}}
+
                 @if (Route::has($base_route . 'index'))
-                    {{-- @if (request()->routeIs(['setting.*', 'profile.*', 'admin_create.*'])) --}}
+                    <button class="btn btn-default float-end m-1">
+                        <div class="form-check form-switch">
+                            <input
+                                class="form-check-input menu-hide bg-{{ $data['page']->status == 0 ? 'success' : 'danger' }}"
+                                data-id="{{ $data['page']->id ?? '' }}" type="checkbox" role="switch"
+                                id="flexSwitchCheckChecked" {{ $data['page']->status == 0 ? 'checked' : '' }}>
+                            <i class="bi bi-menu-button"></i>
+                            <span id="status-info"
+                                class="{{ $data['page']->status == 0 ? 'text-success' : 'text-danger' }}">{{ $data['page']->status == 0 ? 'Menu is visible' : 'Menu is hidden' }}
+                            </span>
+                        </div>
+                    </button>
 
                     <button type="button" class="btn btn-primary float-end m-1" data-bs-toggle="modal"
                         data-bs-target="#pageModal"><i class="bi bi-card-list me-1"></i>
@@ -27,7 +38,7 @@
 
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route($base_route.'index')}}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route($base_route . 'index') }}">Home</a></li>
                 <li class="breadcrumb-item active">@yield('sub_title')</li>
 
             </ol>
@@ -81,14 +92,16 @@
                             <label for="formFile" class="form-label">Banner</label>
                             <div class="form-group d-flex justify-content-between">
 
-                                <input name="image" class="form-control file-input custom-file-input"
-                                    type="file" id="formFile">
+                                <input name="image" class="form-control file-input custom-file-input" type="file"
+                                    id="formFile">
 
                                 <div class="image">
                                     @isset($data['page']->image)
-                                        <img src="{{asset('storage/'.$data['page']->image) }}" alt="" class="previewImage" height="50px">
+                                        <img src="{{ asset('storage/' . $data['page']->image) }}" alt=""
+                                            class="previewImage" height="50px">
                                     @else
-                                        <img src="{{ asset('no-image.png') }}" alt="" class="previewImage" height="50px">
+                                        <img src="{{ asset('no-image.png') }}" alt="" class="previewImage"
+                                            height="50px">
                                     @endisset
 
                                 </div>
@@ -170,15 +183,16 @@
 
                             <div class="col-md-4">
                                 <div class="form-floating">
-                                    <input type="text" name="name" value=""
-                                        class="form-control name" id="floatingName" placeholder="Your Name">
+                                    <input type="text" name="name" value="" class="form-control name"
+                                        id="floatingName" placeholder="Your Name">
                                     <label for="floatingName">Name</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-floating">
                                     <input type="text" name="designation" value=""
-                                        class="form-control designation" id="floatingdesignation" placeholder="Your designation">
+                                        class="form-control designation" id="floatingdesignation"
+                                        placeholder="Your designation">
                                     <label for="floatingdesignation">Designation</label>
                                 </div>
                             </div>
@@ -191,7 +205,8 @@
                                         type="file" id="formFile">
 
                                     <div class="image">
-                                            <img src="{{ asset('no-image.png') }}" alt="" class="previewImage" height="50px">
+                                        <img src="{{ asset('no-image.png') }}" alt="" class="previewImage"
+                                            height="50px">
                                     </div>
 
                                 </div>
@@ -200,22 +215,23 @@
                             <div class="col-md-12">
                                 <div class="form-floating">
 
-                                        <textarea name="description" class="form-control description" rows="5" id="editor100" placeholder="Type Description" style="height:120px;"></textarea>
+                                    <textarea name="description" class="form-control description" rows="5" id="editor100"
+                                        placeholder="Type Description" style="height:120px;"></textarea>
                                     <label for="floatingName">Description</label>
                                 </div>
                             </div>
 
                             <div class="col-md-3">
                                 <div class="form-floating">
-                                    <input type="text" name="seo_title" value=""
-                                        class="form-control" id="floatingEmail" placeholder="Seo Title">
+                                    <input type="text" name="seo_title" value="" class="form-control"
+                                        id="floatingEmail" placeholder="Seo Title">
                                     <label for="floatingEmail">Seo Title</label>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating">
-                                    <input type="text" name="seo_keyword" value=""
-                                        class="form-control" id="floatingPassword" placeholder="Seo Keyword">
+                                    <input type="text" name="seo_keyword" value="" class="form-control"
+                                        id="floatingPassword" placeholder="Seo Keyword">
                                     <label for="floatingPassword">Seo Keyword</label>
                                 </div>
                             </div>
@@ -242,109 +258,114 @@
     </div>
 
 
-     {{-- Post Edit --}}
-    @foreach($data['posts'] as $index=> $post)
-    <div class="modal fade" id="editPost-{{$post->id}}" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span>Edit {{ $panel }}</span>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-
-                    <div class="card-body">
-                        <form action="{{ route($base_route . 'update',$post->id) }}" method="POST" enctype="multipart/form-data"
-                            id="main_form" class="row g-3 main_form">
-                            @csrf
-                            @method('PUT')
-                            <input type="hidden" name="type" value="post">
-
-
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <input type="text" name="title" class="form-control title" value="{{$post->title ?? ''}}"
-                                        id="floatingName" placeholder="Title Name">
-                                    <label for="floatingName">Title</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <input type="text" name="name" value="{{ $post->name ?? '' }}"
-                                        class="form-control name" id="floatingName" placeholder="Your Name">
-                                    <label for="floatingName">Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <input type="text" name="designation" value="{{ $post->designation ?? '' }}"
-                                        class="form-control designation" id="floatingdesignation" placeholder="Your designation">
-                                    <label for="floatingdesignation">Designation</label>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 col-md-12 col-lg-12 image">
-                                <label for="formFile" class="form-label">Image</label>
-                                <div class="form-group d-flex justify-content-between">
-
-                                    <input name="image" class="form-control file-input custom-file-input"
-                                        type="file" id="formFile">
-
-
-                                    <div class="image">
-                                        @if($post->image)
-                                            <img src="{{ asset('storage/'.$post->image) }}" alt="" class="previewImage" height="50px">
-                                        @else
-                                        <img src="{{ asset('no-image.png') }}" alt="" class="previewImage" height="50px">
-                                        @endif
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-floating">
-
-                                        <textarea name="description" class="form-control description" rows="5" id="editor{{$index}}" placeholder="Type Description" style="height:120px;"> {!! $post->description !!} </textarea>
-                                    <label for="floatingName">Description</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <div class="form-floating">
-                                    <input type="text" name="seo_title" value="{{ $post->seo_title ?? '' }}"
-                                        class="form-control" id="floatingEmail" placeholder="Seo Title">
-                                    <label for="floatingEmail">Seo Title</label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-floating">
-                                    <input type="text" name="seo_keyword" value="{{ $post->seo_keyword ?? '' }}"
-                                        class="form-control" id="floatingPassword" placeholder="Seo Keyword">
-                                    <label for="floatingPassword">Seo Keyword</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <textarea class="form-control" name="seo_description" placeholder="Seo Description" id="floatingTextarea">{{ $post->seo_description ?? '' }} </textarea>
-                                    <label for="floatingTextarea">Seo Description</label>
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-success">Update</button>
-                            </div>
-                        </form><!-- End floating Labels Form -->
-
-
-
+    {{-- Post Edit --}}
+    @foreach ($data['posts'] as $index => $post)
+        <div class="modal fade" id="editPost-{{ $post->id }}" tabindex="-1" aria-labelledby="postModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span>Edit {{ $panel }}</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                </div>
+                    <div class="modal-body">
 
+
+                        <div class="card-body">
+                            <form action="{{ route($base_route . 'update', $post->id) }}" method="POST"
+                                enctype="multipart/form-data" id="main_form" class="row g-3 main_form">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="type" value="post">
+
+
+                                <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <input type="text" name="title" class="form-control title"
+                                            value="{{ $post->title ?? '' }}" id="floatingName" placeholder="Title Name">
+                                        <label for="floatingName">Title</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <input type="text" name="name" value="{{ $post->name ?? '' }}"
+                                            class="form-control name" id="floatingName" placeholder="Your Name">
+                                        <label for="floatingName">Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <input type="text" name="designation" value="{{ $post->designation ?? '' }}"
+                                            class="form-control designation" id="floatingdesignation"
+                                            placeholder="Your designation">
+                                        <label for="floatingdesignation">Designation</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-md-12 col-lg-12 image">
+                                    <label for="formFile" class="form-label">Image</label>
+                                    <div class="form-group d-flex justify-content-between">
+
+                                        <input name="image" class="form-control file-input custom-file-input"
+                                            type="file" id="formFile">
+
+
+                                        <div class="image">
+                                            @if ($post->image)
+                                                <img src="{{ asset('storage/' . $post->image) }}" alt=""
+                                                    class="previewImage" height="50px">
+                                            @else
+                                                <img src="{{ asset('no-image.png') }}" alt=""
+                                                    class="previewImage" height="50px">
+                                            @endif
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+
+                                        <textarea name="description" class="form-control description" rows="5" id="editor{{ $index }}"
+                                            placeholder="Type Description" style="height:120px;"> {!! $post->description !!} </textarea>
+                                        <label for="floatingName">Description</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-floating">
+                                        <input type="text" name="seo_title" value="{{ $post->seo_title ?? '' }}"
+                                            class="form-control" id="floatingEmail" placeholder="Seo Title">
+                                        <label for="floatingEmail">Seo Title</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-floating">
+                                        <input type="text" name="seo_keyword" value="{{ $post->seo_keyword ?? '' }}"
+                                            class="form-control" id="floatingPassword" placeholder="Seo Keyword">
+                                        <label for="floatingPassword">Seo Keyword</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" name="seo_description" placeholder="Seo Description" id="floatingTextarea">{{ $post->seo_description ?? '' }} </textarea>
+                                        <label for="floatingTextarea">Seo Description</label>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success">Update</button>
+                                </div>
+                            </form><!-- End floating Labels Form -->
+
+
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
     @endforeach
 
 
@@ -402,7 +423,7 @@
                                         </td>
                                         <td>
                                             @if (isset($message->image))
-                                                <img src="{{ asset('storage/'.$message->image) }}" width="60"
+                                                <img src="{{ asset('storage/' . $message->image) }}" width="60"
                                                     class="img-float">
                                             @else
                                                 <img src="{{ asset('no-image.png') }}" width="60" class="img-float">
@@ -420,9 +441,11 @@
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-around">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#viewPost-{{$message->id}}">
+                                                <a href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#viewPost-{{ $message->id }}">
                                                     <i class="bi bi-eye-fill fs-5 p-2 text-success"></i></a>
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#editPost-{{$message->id}}">
+                                                <a href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#editPost-{{ $message->id }}">
                                                     <i class="bi bi-pencil-square fs-5 p-2"></i></a>
 
                                                 <form action="{{ route($base_route . 'destroy', $message->id) }}"
@@ -452,7 +475,8 @@
 
         {{-- Post View  --}}
         @foreach ($data['posts'] as $message)
-            <div class="modal fade" id="viewPost-{{$message->id}}" tabindex="-1" aria-labelledby="viewPostLabel" aria-hidden="true">
+            <div class="modal fade" id="viewPost-{{ $message->id }}" tabindex="-1" aria-labelledby="viewPostLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -493,9 +517,11 @@
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Image</label>
                                 <div class="col-sm-2">
                                     @isset($message->image)
-                                    <img src="{{asset('storage/'.$message->image)}}" class="img-thumbnail" width="60px" height="60px">
+                                        <img src="{{ asset('storage/' . $message->image) }}" class="img-thumbnail"
+                                            width="60px" height="60px">
                                     @else
-                                    <img src="{{asset($message->image)}}" class="img-thumbnail" width="60px" height="60px">
+                                        <img src="{{ asset($message->image) }}" class="img-thumbnail" width="60px"
+                                            height="60px">
                                     @endisset
 
                                 </div>
@@ -504,11 +530,11 @@
                             <div class="mb-1 row">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Created by</label>
                                 <div class="col-sm-4 mt-2">
-                                    <small>{{$message->createdBy?->name ?? ''}}</small>
+                                    <small>{{ $message->createdBy?->name ?? '' }}</small>
                                 </div>
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Created by</label>
                                 <div class="col-sm-4 mt-2">
-                                    <small>{{$message->createdBy?->name ?? ''}}</small>
+                                    <small>{{ $message->createdBy?->name ?? '' }}</small>
                                 </div>
                             </div>
                         </div>
@@ -542,8 +568,51 @@
                 })
             });
 
+
+            $(document).on('click', '.menu-hide', function() {
+                let btn = $(this);
+                let id = btn.data('id');
+
+                $.ajax({
+                    url: "{{ route('message.status_menu') }}",
+                    method: "POST",
+                    data: {
+                        id: id,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(res) {
+                        successAlert(res.success_message);
+
+                        let status = $('#status-info'); // target the span
+
+                        if (res.status_update == 0) {
+                            // Button styles
+                            btn.removeClass('bg-danger text-danger')
+                                .addClass('bg-success text-success');
+
+                            // Status span styles + text
+                            status.removeClass('text-danger').addClass('text-success').text(
+                                'Menu is visible');
+
+                        } else if (res.status_update == 1) {
+                            // Button styles
+                            btn.removeClass('bg-success text-success')
+                                .addClass('bg-danger text-danger');
+
+                            // Status span styles + text
+                            status.removeClass('text-success')
+                                .addClass('text-danger')
+                                .text('Menu is hidden');
+                        }
+                    },
+                    error: function(xhr) {
+                        errorAlert("Something went wrong!");
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+
+
         });
     </script>
-
-
 @endpush

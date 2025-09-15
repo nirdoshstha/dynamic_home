@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use App\Models\OnlineRegistration;
 use App\Http\Controllers\Controller;
 use App\Models\Alumni;
+use App\Models\Download;
 use App\Models\Kindergarten;
 use Illuminate\Contracts\Session\Session;
 
@@ -124,6 +125,12 @@ class FrontendController extends Controller
         $data['page'] = Notice::where('type', 'page')->firstOrFail();
         $data['notice'] = Notice::active()->latest()->where('type', 'post')->paginate(10);
         return view('frontend.pages.notice', compact('data'));
+    }
+
+    public function download()
+    {
+        $data['downloads'] = Download::active()->latest()->paginate(12);
+        return view('frontend.pages.download', compact('data'));
     }
 
     public function contact()

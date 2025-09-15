@@ -34,6 +34,7 @@ return new class extends Migration
             $table->boolean('scrolling_news')->default(0);
             $table->boolean('notice_board')->default(0);
             $table->boolean('management_team')->default(0);
+            $table->boolean('about_design')->default(0);
 
             $table->string('brochure_image')->nullable();
             $table->string('brochure')->nullable();

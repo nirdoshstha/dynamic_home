@@ -110,106 +110,136 @@
             <div class="collapse navbar-collapse" id="main_nav">
                 <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
 
-                    <li class="nav-item dropdown {{ Request::is('about-us/*', 'about-us') ? 'active' : '' }}">
-                        <a class="nav-link dropdown-toggle" href="{{ route('frontend.about_single') }}"
-                            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            About Us
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('frontend.about_single') }}">Who we are</a>
-                            </li>
-                            @foreach (category_abouts() as $categories)
+                    @if (about() && about()?->status == 0)
+                        <li class="nav-item dropdown {{ Request::is('about-us/*', 'about-us') ? 'active' : '' }}">
+                            <a class="nav-link dropdown-toggle" href="{{ route('frontend.about_single') }}"
+                                id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                About Us
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li>
-                                    <a class="dropdown-item"
-                                        href="{{ route('frontend.about_us', $categories->slug) }}">{{ $categories->title }}</a>
+                                    <a class="dropdown-item" href="{{ route('frontend.about_single') }}">Who we are</a>
                                 </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown {{ Request::is('message/*') ? 'active' : '' }}">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Message
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                                @foreach (category_abouts() as $categories)
+                                    <li>
+                                        <a class="dropdown-item"
+                                            href="{{ route('frontend.about_us', $categories->slug) }}">{{ $categories->title }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endif
 
-                            @foreach (message() as $messages)
+                    @if (message() && message()?->status == 0)
+                        <li class="nav-item dropdown {{ Request::is('message/*') ? 'active' : '' }}">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Message
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+
+                                @foreach (messages() as $messages)
+                                    <li>
+                                        <a class="dropdown-item"
+                                            href="{{ route('frontend.message', $messages->slug) }}">{{ $messages->title }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endif
+
+                    @if (information() && information()?->status == 0)
+                        <li class="nav-item dropdown {{ Request::is('information/*') ? 'active' : '' }}">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Information
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+
+                                @foreach (informations() as $informations)
+                                    <li>
+                                        <a class="dropdown-item"
+                                            href="{{ route('frontend.information', $informations->slug) }}">{{ $informations->title }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endif
+
+                    @if (kindergarten() && kindergarten()?->status == 0)
+                        <li class="nav-item dropdown {{ Request::is('kindergarten/*') ? 'active' : '' }}">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Kindergarten
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+
+                                @foreach (kindergartens() as $kindergartens)
+                                    <li>
+                                        <a class="dropdown-item"
+                                            href="{{ route('frontend.kindergarten', $kindergartens->slug) }}">{{ $kindergartens->title }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endif
+
+                    @if (album() && album()?->status == 0)
+                        <li
+                            class="nav-item dropdown {{ Request::is('photo-album', 'video-gallery') ? 'active' : '' }}">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Gallery
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                                 <li>
-                                    <a class="dropdown-item"
-                                        href="{{ route('frontend.message', $messages->slug) }}">{{ $messages->title }}</a>
+                                    <a class="dropdown-item" href="{{ route('frontend.photo_album') }}">Album</a>
                                 </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown {{ Request::is('information/*') ? 'active' : '' }}">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Information
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-
-                            @foreach (information() as $informations)
                                 <li>
-                                    <a class="dropdown-item"
-                                        href="{{ route('frontend.information', $informations->slug) }}">{{ $informations->title }}</a>
+                                    <a class="dropdown-item" href="{{ route('frontend.video') }}">Videos</a>
                                 </li>
-                            @endforeach
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
+                    @endif
 
-                    <li class="nav-item dropdown {{ Request::is('kindergarten/*') ? 'active' : '' }}">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Kindergarten
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
 
-                            @foreach (kindergarten() as $kindergartens)
-                                <li>
-                                    <a class="dropdown-item"
-                                        href="{{ route('frontend.kindergarten', $kindergartens->slug) }}">{{ $kindergartens->title }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
+                    @if (news() && news()?->status == 0)
+                        <li class="nav-item {{ Request::is('news-and-events') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('frontend.news_events') }}">News & Events</a>
+                        </li>
+                    @endif
 
-                    <li class="nav-item dropdown {{ Request::is('photo-album', 'video-gallery') ? 'active' : '' }}">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Gallery
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('frontend.photo_album') }}">Album</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('frontend.video') }}">Videos</a>
-                            </li>
-                        </ul>
-                    </li>
 
-                    <li class="nav-item {{ Request::is('news-and-events') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('frontend.news_events') }}">News & Events</a>
-                    </li>
-                    <li class="nav-item {{ Request::is('notice') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('frontend.notice') }}">Notice</a>
-                    </li>
-                    <li class="nav-item dropdown {{ Request::is('download') ? 'active' : '' }}">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Downloads
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                    @if (notice() && notice()?->status == 0)
+                        <li class="nav-item {{ Request::is('notice') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('frontend.notice') }}">Notice</a>
+                        </li>
+                    @endif
 
-                            @foreach (downloads() as $download)
-                                <li class="{{ Request::is('download') ? 'active' : '' }}">
-                                    <a class="dropdown-item" target="_blank"
-                                        href="{{ asset('storage/' . $download->image) }}"> {{ $download->title }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
+                    @if (downloadMenu() && downloadMenu()?->status == 0)
+                        <li class="nav-item dropdown {{ Request::is('download') ? 'active' : '' }}">
+                            {{-- <a class="nav-link dropdown-toggle" href="{{ route('frontend.download') }}"
+                                id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Downloads
+                            </a> --}}
+                            <a class="nav-link dropdown-toggle" href="{{ route('frontend.download') }}"
+                                id="navbarDropdownMenuLink" role="button">
+                                Downloads
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+
+                                {{-- @foreach (downloads() as $download)
+                                    <li class="{{ Request::is('download') ? 'active' : '' }}">
+                                        <a class="dropdown-item" target="_blank"
+                                            href="{{ asset('storage/' . $download->image) }}">
+                                            {{ $download->title }}</a>
+                                    </li>
+                                @endforeach --}}
+                            </ul>
+                        </li>
+                    @endif
                     <li class="nav-item {{ Request::is('contact') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('frontend.contact') }}">Contact Us</a>
                     </li>

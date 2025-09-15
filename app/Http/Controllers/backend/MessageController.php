@@ -134,6 +134,26 @@ class MessageController extends BackendBaseController
         }
     }
 
+    public function messageStatusMenu(Request $request)
+    {
+        try {
+            $message = $this->model->where('type', 'page')->find($request['id']);
+            $message->status = $message->status ? '0' : '1';
+            $message->save();
+            $message = $this->model->where('type', 'page')->first();
+            $status = $message->status;
+            return response()->json([
+                'success_message' => $this->panel . ' Menu Status Changed Successfully !!',
+                'url' => route($this->base_route . 'index'),
+                'status_update' => $status,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error_message' => 'Something Went Wrong..',
+            ]);
+        }
+    }
+
     public function updatePage(Request $request, $id)
     {
         $request->validate([

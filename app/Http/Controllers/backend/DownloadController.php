@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\backend\BackendBaseController;
 use App\Models\Download;
+use App\Models\General;
 use App\Traits\ImageTrait;
 
 class DownloadController extends BackendBaseController
@@ -25,6 +26,8 @@ class DownloadController extends BackendBaseController
 
     public function index()
     {
+        $data = [];
+        $data['menu'] = General::where('type', 'download')->first();
         $data['posts'] = $this->model->orderBy('rank', 'asc')->get();
         return view($this->__loadDataToView($this->view_path . 'index'), compact('data'));
     }
@@ -38,11 +41,16 @@ class DownloadController extends BackendBaseController
         ]);
 
         try {
-            $data = $request->except('image');
+            $data = $request->except('image', 'cover_image');
 
             if ($request->file('image')) {
                 $image_name = $this->imageUpload($request->image, 'download');
                 $data['image'] = $image_name;
+            }
+
+            if ($request->file('cover_image')) {
+                $cover_image_name = $this->imageUpload($request->cover_image, 'download');
+                $data['cover_image'] = $cover_image_name;
             }
 
             $download = $this->model->create($data + [
@@ -78,6 +86,12 @@ class DownloadController extends BackendBaseController
                 deleteImage($download->image);
                 $image_name = $this->imageUpload($request->image, 'download');
                 $data['image'] = $image_name;
+            }
+
+            if ($request->file('cover_image')) {
+                deleteImage($download->cover_image);
+                $cover_image_name = $this->imageUpload($request->cover_image, 'download');
+                $data['cover_image'] = $cover_image_name;
             }
 
             $download->update($data + [
@@ -124,6 +138,34 @@ class DownloadController extends BackendBaseController
             return response()->json([
                 'success_message' => $this->panel . ' Status Changed Successfully !!',
                 'url' => route($this->base_route . 'index'),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error_message' => 'Something Went Wrong..',
+            ]);
+        }
+    }
+
+    public function downloadMenuStatus(Request $request)
+    {
+        try {
+            $id = $request['id'];
+
+            $download = General::updateOrCreate([
+                'id' => $id ?? null,
+            ], [
+                'type' => 'download',
+                'user_id' => auth()->user()->id,
+                'status'     =>  $id ? (General::find($id)->status ? '0' : '1') : '1',
+                $id ? 'updated_by' : 'created_by' => auth()->user()->id,
+            ]);
+
+            $status = $download->status;
+
+            return response()->json([
+                'success_message' => $this->panel . ' Menu Status Changed Successfully !!',
+                'url' => route($this->base_route . 'index'),
+                'status_update' => $status,
             ]);
         } catch (\Exception $e) {
             return response()->json([

@@ -12,10 +12,10 @@ use App\Traits\ImageTrait;
 class NewsEventsController extends BackendBaseController
 {
     protected $model;
-    protected $panel ='News And Events';
-    protected $base_route ='news.';
-    protected $view_path ='backend.news.';
-    protected $img_path ='uploads/news/';
+    protected $panel = 'News And Events';
+    protected $base_route = 'news.';
+    protected $view_path = 'backend.news.';
+    protected $img_path = 'uploads/news/';
 
     public function __construct()
     {
@@ -24,10 +24,11 @@ class NewsEventsController extends BackendBaseController
 
     use ImageTrait;
 
-    public function index(){
+    public function index()
+    {
         $data['page'] = $this->model->where('type', 'page')->first();
         $data['posts'] = $this->model->where('type', 'post')->get();
-        return view($this->__loadDataToView($this->view_path.'index'),compact('data'));
+        return view($this->__loadDataToView($this->view_path . 'index'), compact('data'));
     }
 
     public function store(Request $request)
@@ -39,10 +40,10 @@ class NewsEventsController extends BackendBaseController
         try {
             $data = $request->except('image');
 
-                if ($request->file('image')) {
-                    $image_name = $this->imageUpload($request->image, 'news');
-                    $data['image'] = $image_name;
-                }
+            if ($request->file('image')) {
+                $image_name = $this->imageUpload($request->image, 'news');
+                $data['image'] = $image_name;
+            }
 
             $news = $this->model->create($data + [
                 'type' => $request['type'],
@@ -51,7 +52,7 @@ class NewsEventsController extends BackendBaseController
             ]);
 
             return response()->json([
-                'success_message' => $this->panel.' Stored Successfully !!!',
+                'success_message' => $this->panel . ' Stored Successfully !!!',
                 'url' => route($this->base_route . 'index')
             ]);
         } catch (\Exception $e) {
@@ -82,10 +83,10 @@ class NewsEventsController extends BackendBaseController
             $news->update($data + [
                 'type' => $request['type'],
                 'slug' => Str::slug($data['title']),
-                'updated_by' =>auth()->user()->id,
+                'updated_by' => auth()->user()->id,
             ]);
             return response()->json([
-                'success_message' => $this->panel.' Updated Successfully !!',
+                'success_message' => $this->panel . ' Updated Successfully !!',
                 'url' => route($this->base_route . 'index'),
             ]);
         } catch (\Exception $e) {
@@ -104,7 +105,7 @@ class NewsEventsController extends BackendBaseController
             deleteImage($news->image);
             $news->delete();
             return response()->json([
-                'success_message' => $this->panel.' Deleted Successfully !!!',
+                'success_message' => $this->panel . ' Deleted Successfully !!!',
                 'url' => route($this->base_route . 'index')
             ]);
         } catch (\Exception $e) {
@@ -123,7 +124,7 @@ class NewsEventsController extends BackendBaseController
             $news->status = $news->status ? '0' : '1';
             $news->save();
             return response()->json([
-                'success_message' => $this->panel.' Status Changed Successfully !!',
+                'success_message' => $this->panel . ' Status Changed Successfully !!',
                 'url' => route($this->base_route . 'index'),
             ]);
         } catch (\Exception $e) {
@@ -132,6 +133,29 @@ class NewsEventsController extends BackendBaseController
             ]);
         }
     }
+
+
+    public function newsStatusMenu(Request $request)
+    {
+        try {
+            $news = $this->model->where('type', 'page')->find($request['id']);
+            $news->status = $news->status ? '0' : '1';
+            $news->save();
+            $news = $this->model->where('type', 'page')->first();
+            $status = $news->status;
+            return response()->json([
+                'success_message' => $this->panel . ' Menu Status Changed Successfully !!',
+                'url' => route($this->base_route . 'index'),
+                'status_update' => $status,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error_message' => 'Something Went Wrong..',
+            ]);
+        }
+    }
+
+
 
     public function updatePage(Request $request, $id)
     {
@@ -149,12 +173,12 @@ class NewsEventsController extends BackendBaseController
             $data['page']->image = $image_name;
         }
 
-        $data['page']->update($page +[
-            'updated_by' =>auth()->user()->id,
+        $data['page']->update($page + [
+            'updated_by' => auth()->user()->id,
         ]);
 
         return response()->json([
-            'success_message' => $this->panel.' Updated Successfully !!!',
+            'success_message' => $this->panel . ' Updated Successfully !!!',
             'url' => route($this->base_route . 'index')
         ]);
     }

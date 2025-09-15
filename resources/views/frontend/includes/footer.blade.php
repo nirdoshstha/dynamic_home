@@ -64,10 +64,16 @@
                 <h5>Quick links</h5>
                 <ul class="list-unstyled quick-links">
                     <li><a href="{{ route('frontend.index') }}"><i class="fa fa-angle-double-right"></i>Home</a></li>
-                    <li><a href="{{ route('frontend.about_single') }}"><i class="fa fa-angle-double-right"></i>About</a>
-                    </li>
-                    <li><a href="{{ route('frontend.photo_album') }}"><i
-                                class="fa fa-angle-double-right"></i>Gallery</a></li>
+                    @if (about() && about()?->status == 0)
+                        <li><a href="{{ route('frontend.about_single') }}"><i
+                                    class="fa fa-angle-double-right"></i>About</a>
+                        </li>
+                    @endif
+
+                    @if (album() && album()?->status == 0)
+                        <li><a href="{{ route('frontend.photo_album') }}"><i
+                                    class="fa fa-angle-double-right"></i>Gallery</a></li>
+                    @endif
                     <li><a href="{{ route('frontend.contact') }}"><i class="fa fa-angle-double-right"></i>Contact
                             Us</a></li>
                     <li><a href="{{ route('login') }}"><i class="fa fa-angle-double-right"></i>Login</a></li>

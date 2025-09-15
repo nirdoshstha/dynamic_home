@@ -12,7 +12,18 @@
             @if (isset($base_route))
                 {{-- @if (Route::is('setting.index')) --}}
                 @if (Route::has($base_route . 'index'))
-                    {{-- @if (request()->routeIs(['setting.*', 'profile.*', 'admin_create.*'])) --}}
+                    <button class="btn btn-default float-end m-1">
+                        <div class="form-check form-switch">
+                            <input
+                                class="form-check-input menu-hide bg-{{ $data['menu']?->status == 0 ? 'success' : 'danger' }}"
+                                data-id="{{ $data['menu']?->id ?? '' }}" type="checkbox" role="switch"
+                                id="flexSwitchCheckChecked" {{ $data['menu']?->status == 0 ? 'checked' : '' }}>
+                            <i class="bi bi-menu-button"></i>
+                            <span id="status-info"
+                                class="{{ $data['menu']?->status == 0 ? 'text-success' : 'text-danger' }}">{{ $data['menu']?->status == 0 ? 'Menu is visible' : 'Menu is hidden' }}
+                            </span>
+                        </div>
+                    </button>
 
                     <button type="button" class="btn btn-success m-1 float-end" data-bs-toggle="modal"
                         data-bs-target="#postModal"><i class="bi bi-plus-circle me-1"></i>
@@ -24,7 +35,7 @@
 
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route($base_route.'index')}}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route($base_route . 'index') }}">Home</a></li>
                 <li class="breadcrumb-item active">@yield('sub_title')</li>
 
             </ol>
@@ -68,7 +79,21 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-12 col-md-12 col-lg-12 image">
+                            <div class="col-sm-6 col-md-6 col-lg-6 image">
+                                <label for="formFile" class="form-label">Cover Image</label>
+                                <div class="form-group d-flex justify-content-between">
+
+                                    <input name="cover_image" class="form-control file-input custom-file-input"
+                                        type="file" id="formFile">
+
+                                    <div class="image">
+                                        <img src="" alt="" class="previewImage" height="50px">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6 col-lg-6 image">
                                 <label for="formFile" class="form-label">Download File</label>
                                 <div class="form-group d-flex justify-content-between">
 
@@ -135,7 +160,50 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-12 col-md-12 col-lg-12 image">
+                                <div class="col-sm-6 col-md-6 col-lg-6 image">
+                                    <label for="formFile" class="form-label">Cover Image</label>
+                                    <div class="form-group d-flex justify-content-between">
+
+                                        <input name="cover_image" class="form-control file-input custom-file-input"
+                                            type="file" id="formFile">
+
+                                        <div class="image">
+                                            @isset($post->cover_image)
+                                                @php
+                                                    $extension = explode('.', $post->cover_image)[1];
+                                                @endphp
+                                            @endisset
+                                            @isset($post->cover_image)
+                                                @if ($extension == 'pdf')
+                                                    <a href="{{ asset('storage/' . $post->cover_image) }}" target="_blank">
+                                                        <img src="{{ asset('pdf-img.png') }}" alt=""
+                                                            class="previewImage" width="40px" height="40">
+                                                    </a>
+                                                @elseif($extension == 'docx' || $extension == 'doc')
+                                                    <a href="{{ asset('storage/' . $post->cover_image) }}" target="_blank">
+                                                        <img src="{{ asset('word-img.png') }}" alt=""
+                                                            class="previewImage" width="40px" height="40">
+                                                    </a>
+                                                @elseif($extension == 'xls' || $extension == 'xlsx')
+                                                    <a href="{{ asset('storage/' . $post->cover_image) }}" target="_blank">
+                                                        <img src="{{ asset('excel-img.png') }}" alt=""
+                                                            class="previewImage" width="40px" height="40">
+                                                    </a>
+                                                @else
+                                                    <a href="{{ asset('storage/' . $post->cover_image) }}" target="_blank">
+                                                        <img src="{{ asset('storage/' . $post->cover_image) }}"
+                                                            alt="" class="previewImage" height="40px"
+                                                            height="40">
+                                                    </a>
+                                                @endif
+                                            @endisset
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-6 col-lg-6 image">
                                     <label for="formFile" class="form-label">Download File</label>
                                     <div class="form-group d-flex justify-content-between">
 
@@ -144,9 +212,9 @@
 
                                         <div class="image">
                                             @isset($post->image)
-                                            @php
-                                                $extension = explode('.', $post->image)[1];
-                                            @endphp
+                                                @php
+                                                    $extension = explode('.', $post->image)[1];
+                                                @endphp
                                             @endisset
                                             @isset($post->image)
                                                 @if ($extension == 'pdf')
@@ -159,7 +227,7 @@
                                                         <img src="{{ asset('word-img.png') }}" alt=""
                                                             class="previewImage" width="40px" height="40">
                                                     </a>
-                                                    @elseif($extension == 'xls' || $extension == 'xlsx')
+                                                @elseif($extension == 'xls' || $extension == 'xlsx')
                                                     <a href="{{ asset('storage/' . $post->image) }}" target="_blank">
                                                         <img src="{{ asset('excel-img.png') }}" alt=""
                                                             class="previewImage" width="40px" height="40">
@@ -206,17 +274,19 @@
                         <table class="table table-borderless datatable datatable-table">
                             <thead>
                                 <tr>
-                                    <th data-sortable="true" style="width: 10.655737704918032%;"><button
+                                    <th data-sortable="true" style="width: 5%;"><button
                                             class="datatable-sorter">#</button></th>
-                                    <th data-sortable="true" style="width: 23.442622950819672%;"><button
+                                    <th data-sortable="true" style="width: 25%;"><button
                                             class="datatable-sorter">Name</button></th>
-                                    <th data-sortable="true" style="width: 39.34426229508197%;"><button
+                                    <th data-sortable="true" style="width: 25%;"><button class="datatable-sorter">Cover
+                                            Image</button></th>
+                                    <th data-sortable="true" style="width: 25%;"><button
                                             class="datatable-sorter">Download File</button></th>
-                                    <th data-sortable="true" style="width: 39.34426229508197%;"><button
+                                    <th data-sortable="true" style="width: 25%;"><button
                                             class="datatable-sorter">Rank</button></th>
-                                    <th data-sortable="true" style="width: 11.80327868852459%;"><button
+                                    <th data-sortable="true" style="width: 5%"><button
                                             class="datatable-sorter">Status</button></th>
-                                    <th data-sortable="true" style="width: 14.754098360655737%;"><button
+                                    <th data-sortable="true" style="width: 20%"><button
                                             class="datatable-sorter">Action</button></th>
                                 </tr>
                             </thead>
@@ -229,10 +299,48 @@
                                         </td>
 
                                         <td>
+                                            @isset($download->cover_image)
+                                                @php
+                                                    $extension = explode('.', $download->cover_image)[1];
+                                                @endphp
+                                            @endisset
+                                            @isset($download->cover_image)
+                                                @if ($extension == 'pdf')
+                                                    <a href="{{ asset('storage/' . $download->cover_image) }}"
+                                                        target="_blank">
+                                                        <img src="{{ asset('pdf-img.png') }}" alt=""
+                                                            class="previewImage" width="40px" height="40">
+                                                    </a>
+                                                @elseif($extension == 'docx' || $extension == 'doc')
+                                                    <a href="{{ asset('storage/' . $download->cover_image) }}"
+                                                        target="_blank">
+                                                        <img src="{{ asset('word-img.png') }}" alt=""
+                                                            class="previewImage" width="40px" height="40">
+                                                    </a>
+                                                @elseif($extension == 'xls' || $extension == 'xlsx')
+                                                    <a href="{{ asset('storage/' . $download->cover_image) }}"
+                                                        target="_blank">
+                                                        <img src="{{ asset('excel-img.png') }}" alt=""
+                                                            class="previewImage" width="40px" height="40">
+                                                    </a>
+                                                @else
+                                                    <a href="{{ asset('storage/' . $download->cover_image) }}"
+                                                        target="_blank">
+                                                        <img src="{{ asset('storage/' . $download->cover_image) }}"
+                                                            alt="" class="previewImage" height="40px"
+                                                            height="40">
+                                                    </a>
+                                                @endif
+                                            @endisset
+
+
+                                        </td>
+
+                                        <td>
                                             @isset($download->image)
-                                            @php
-                                                $extension = explode('.', $download->image)[1];
-                                            @endphp
+                                                @php
+                                                    $extension = explode('.', $download->image)[1];
+                                                @endphp
                                             @endisset
                                             @isset($download->image)
                                                 @if ($extension == 'pdf')
@@ -245,7 +353,7 @@
                                                         <img src="{{ asset('word-img.png') }}" alt=""
                                                             class="previewImage" width="40px" height="40">
                                                     </a>
-                                                    @elseif($extension == 'xls' || $extension == 'xlsx')
+                                                @elseif($extension == 'xls' || $extension == 'xlsx')
                                                     <a href="{{ asset('storage/' . $download->image) }}" target="_blank">
                                                         <img src="{{ asset('excel-img.png') }}" alt=""
                                                             class="previewImage" width="40px" height="40">
@@ -323,9 +431,9 @@
                                 <label class="col-sm-2 col-form-lable">Download File</label>
                                 <div class="col-sm-6">
                                     @isset($download->image)
-                                    @php
-                                        $extension = explode('.', $download->image)[1];
-                                    @endphp
+                                        @php
+                                            $extension = explode('.', $download->image)[1];
+                                        @endphp
                                     @endisset
                                     @isset($download->image)
                                         @if ($extension == 'pdf')
@@ -338,10 +446,10 @@
                                                 <img src="{{ asset('word-img.png') }}" alt="" class="previewImage"
                                                     width="40px" height="40">
                                             </a>
-                                            @elseif($extension == 'xls' || $extension == 'xlsx')
+                                        @elseif($extension == 'xls' || $extension == 'xlsx')
                                             <a href="{{ asset('storage/' . $download->image) }}" target="_blank">
-                                                <img src="{{ asset('excel-img.png') }}" alt=""
-                                                    class="previewImage" width="40px" height="40">
+                                                <img src="{{ asset('excel-img.png') }}" alt="" class="previewImage"
+                                                    width="40px" height="40">
                                             </a>
                                         @else
                                             <a href="{{ asset('storage/' . $download->image) }}" target="_blank">
@@ -401,6 +509,51 @@
                     }
                 })
             });
+
+
+            $(document).on('click', '.menu-hide', function() {
+                let btn = $(this);
+                let id = btn.data('id');
+
+                $.ajax({
+                    url: "{{ route('download.status_menu') }}",
+                    method: "POST",
+                    data: {
+                        id: id,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(res) {
+                        successAlert(res.success_message);
+
+                        let status = $('#status-info'); // target the span
+
+                        if (res.status_update == 0) {
+                            // Button styles
+                            btn.removeClass('bg-danger text-danger')
+                                .addClass('bg-success text-success');
+
+                            // Status span styles + text
+                            status.removeClass('text-danger').addClass('text-success').text(
+                                'Menu is visible');
+
+                        } else if (res.status_update == 1) {
+                            // Button styles
+                            btn.removeClass('bg-success text-success')
+                                .addClass('bg-danger text-danger');
+
+                            // Status span styles + text
+                            status.removeClass('text-success')
+                                .addClass('text-danger')
+                                .text('Menu is hidden');
+                        }
+                    },
+                    error: function(xhr) {
+                        errorAlert("Something went wrong!");
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+
 
         });
     </script>

@@ -380,7 +380,6 @@
                                                         <label class="form-check-label"
                                                             for="inlineRadio1">Standard</label>
                                                     </div>
-
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio"
                                                             name="management_team" id="inlineRadio1" value="2"
@@ -391,8 +390,33 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-6 py-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <label for="floatingName">About us design on Home</label>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="about_design" id="inlineRadio2" value="0"
+                                                            {{ $setting->about_design == '0' ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="inlineRadio2">Default</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="about_design" id="inlineRadio1" value="1"
+                                                            {{ $setting->about_design == 1 ? 'checked' : '' }}>
+                                                        <label class="form-check-label"
+                                                            for="inlineRadio1">Standard</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="about_design" id="inlineRadio1" value="2"
+                                                            {{ $setting->about_design == 2 ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="inlineRadio1">Hide</label>
+                                                    </div>
 
-                                            <div class="col-md-4">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
                                                 <div class="form-floating d-flex justify-content-between">
                                                     <input type="file" name="background_image" class="form-control"
                                                         id="floatingbackground_image" placeholder="Your Background image">

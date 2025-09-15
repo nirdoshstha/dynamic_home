@@ -80,22 +80,26 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
     //About Us
     Route::resource('about', AboutUsController::class)->names('about');
     Route::get('about-status', [AboutUsController::class, 'aboutStatus'])->name('about.status');
+    Route::post('about-status-menu', [AboutUsController::class, 'aboutStatusMenu'])->name('about.status_menu');
     Route::put('about-update/update/{id}', [AboutUsController::class, 'updatePage'])->name('about_page.update');
 
     //Information
     Route::resource('information', InformationController::class)->names('information');
     Route::get('information-status', [InformationController::class, 'informationStatus'])->name('information.status');
+    Route::post('information-status-menu', [InformationController::class, 'informationStatusMenu'])->name('information.status_menu');
     Route::put('information-update/update/{id}', [InformationController::class, 'updatePage'])->name('information_page.update');
 
     //Kindergarten
     Route::resource('kindergarten', KindergartenController::class)->names('kindergarten');
     Route::get('kindergarten-status', [KindergartenController::class, 'kindergartenStatus'])->name('kindergarten.status');
+    Route::post('kindergarten-status-menu', [KindergartenController::class, 'kindergartenStatusMenu'])->name('kindergarten.status_menu');
     Route::put('kindergarten-update/update/{id}', [KindergartenController::class, 'updatePage'])->name('kindergarten_page.update');
 
 
     //Message
     Route::resource('message', MessageController::class)->names('message');
     Route::get('message-status', [MessageController::class, 'messageStatus'])->name('message.status');
+    Route::post('message-status-menu', [MessageController::class, 'messageStatusMenu'])->name('message.status_menu');
     Route::put('message-update/update/{id}', [MessageController::class, 'updatePage'])->name('message_page.update');
 
 
@@ -122,6 +126,8 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
     Route::resource('album', AlbumController::class)->names('album');
     Route::put('album/update/{id}', [AlbumController::class, 'updatePage'])->name('album_page.update');
     Route::get('album-status', [AlbumController::class, 'albumStatus'])->name('album.status');
+    Route::post('album-status-menu', [AlbumController::class, 'albumStatusMenu'])->name('album.status_menu');
+
 
     //Video
     Route::resource('video', VideoController::class)->names('video');
@@ -132,16 +138,21 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
     Route::resource('news', NewsEventsController::class)->names('news');
     Route::put('news/update/{id}', [NewsEventsController::class, 'updatePage'])->name('news_page.update');
     Route::get('news-status', [NewsEventsController::class, 'newsStatus'])->name('news.status');
+    Route::post('news-status-menu', [NewsEventsController::class, 'newsStatusMenu'])->name('news.status_menu');
+
 
     //Notices
     Route::resource('notice', NoticeController::class)->names('notice');
     Route::put('notice/update/{id}', [NoticeController::class, 'updatePage'])->name('notice_page.update');
     Route::get('notice-status', [NoticeController::class, 'noticeStatus'])->name('notice.status');
+    Route::post('notice-status-menu', [NoticeController::class, 'noticeStatusMenu'])->name('notice.status_menu');
+
 
     //Downloads
     Route::resource('download', DownloadController::class)->names('download');
     Route::put('download/update/{id}', [DownloadController::class, 'updatePage'])->name('download_page.update');
     Route::get('download-status', [DownloadController::class, 'downloadStatus'])->name('download.status');
+    Route::post('download-menu-status', [DownloadController::class, 'downloadMenuStatus'])->name('download.status_menu');
 
     //Scrolling Text
     Route::resource('scrolling-text', ScrollingTextController::class)->names('scrolling_text');

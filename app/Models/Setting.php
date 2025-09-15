@@ -30,6 +30,7 @@ class Setting extends Model
         'scrolling_news',
         'notice_board',
         'management_team',
+        'about_design',
         'brochure_image',
         'brochure',
         'background_image',

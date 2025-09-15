@@ -10,9 +10,20 @@
     <div class="pagetitle">
         <h1>Dashboard
             @if (isset($base_route))
-                {{-- @if (Route::is('setting.index')) --}}
                 @if (Route::has($base_route . 'index'))
-                    {{-- @if (request()->routeIs(['setting.*', 'profile.*', 'admin_create.*'])) --}}
+                    <button class="btn btn-default float-end m-1">
+                        <div class="form-check form-switch">
+                            <input
+                                class="form-check-input menu-hide bg-{{ $data['page']->status == 0 ? 'success' : 'danger' }}"
+                                data-id="{{ $data['page']->id ?? '' }}" type="checkbox" role="switch"
+                                id="flexSwitchCheckChecked" {{ $data['page']->status == 0 ? 'checked' : '' }}>
+                            <i class="bi bi-menu-button"></i>
+                            {{-- {{ $data['page']->status == 0 ? 'Menu Visible' : 'Menu Hidden' }} --}}
+                            <span id="status-info"
+                                class="{{ $data['page']->status == 0 ? 'text-success' : 'text-danger' }}">{{ $data['page']->status == 0 ? 'Menu is visible' : 'Menu is hidden' }}
+                            </span>
+                        </div>
+                    </button>
 
                     <button type="button" class="btn btn-primary float-end m-1" data-bs-toggle="modal"
                         data-bs-target="#pageModal"><i class="bi bi-card-list me-1"></i>
@@ -27,7 +38,7 @@
 
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route($base_route.'index')}}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route($base_route . 'index') }}">Home</a></li>
                 <li class="breadcrumb-item active">@yield('sub_title')</li>
 
             </ol>
@@ -206,15 +217,15 @@
 
                             <div class="col-md-3">
                                 <div class="form-floating">
-                                    <input type="text" name="seo_title" value=""
-                                        class="form-control" id="floatingEmail" placeholder="Your Email">
+                                    <input type="text" name="seo_title" value="" class="form-control"
+                                        id="floatingEmail" placeholder="Your Email">
                                     <label for="floatingEmail">Seo Title</label>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating">
-                                    <input type="text" name="seo_keyword" value=""
-                                        class="form-control" id="floatingPassword" placeholder="Password">
+                                    <input type="text" name="seo_keyword" value="" class="form-control"
+                                        id="floatingPassword" placeholder="Password">
                                     <label for="floatingPassword">Seo Keyword</label>
                                 </div>
                             </div>
@@ -314,7 +325,8 @@
                                                 {{-- <a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#editPost-{{ $information->id }}">
                                                     <i class="bi bi-pencil-square fs-5 p-2"></i></a> --}}
-                                                    <a href="{{route($base_route.'edit',$information->id)}}"><i class="bi bi-pencil-square fs-5 p-2"></i></a>
+                                                <a href="{{ route($base_route . 'edit', $information->id) }}"><i
+                                                        class="bi bi-pencil-square fs-5 p-2"></i></a>
 
                                                 <form action="{{ route($base_route . 'destroy', $information->id) }}"
                                                     method="POST" class="main_form" enctype="multipart/form-data">
@@ -426,6 +438,51 @@
                     }
                 })
             });
+
+            $(document).on('click', '.menu-hide', function() {
+                let btn = $(this);
+                let id = btn.data('id');
+
+                $.ajax({
+                    url: "{{ route('information.status_menu') }}",
+                    method: "POST",
+                    data: {
+                        id: id,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(res) {
+                        successAlert(res.success_message);
+
+                        let status = $('#status-info'); // target the span
+
+                        if (res.status_update == 0) {
+                            // Button styles
+                            btn.removeClass('bg-danger text-danger')
+                                .addClass('bg-success text-success');
+
+                            // Status span styles + text
+                            status.removeClass('text-danger').addClass('text-success').text(
+                                'Menu is visible');
+
+                        } else if (res.status_update == 1) {
+                            // Button styles
+                            btn.removeClass('bg-success text-success')
+                                .addClass('bg-danger text-danger');
+
+                            // Status span styles + text
+                            status.removeClass('text-success')
+                                .addClass('text-danger')
+                                .text('Menu is hidden');
+                        }
+                    },
+                    error: function(xhr) {
+                        errorAlert("Something went wrong!");
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+
+          
 
         });
     </script>

@@ -26,7 +26,7 @@ Route::get('about-us', [FrontendController::class, 'aboutSingle'])->name('fronte
 
 
 //Photo Album
-Route::get('photo-album', [FrontendController::class, 'photoAlbum'])->name('frontend.photo_album');
+Route::get('album', [FrontendController::class, 'photoAlbum'])->name('frontend.photo_album');
 
 //Album Photo Gallery
 Route::get('gallery/{album_slug}', [FrontendController::class, 'photoAlbumGallery'])->name('frontend.photo_album_gallery');
@@ -39,6 +39,10 @@ Route::get('news-and-events', [FrontendController::class, 'newsAndEvents'])->nam
 
 //Notice
 Route::get('notice', [FrontendController::class, 'noticeAll'])->name('frontend.notice');
+
+//Download
+Route::get('download', [FrontendController::class, 'download'])->name('frontend.download');
+
 
 //Contact Us
 Route::get('contact', [FrontendController::class, 'contact'])->name('frontend.contact');

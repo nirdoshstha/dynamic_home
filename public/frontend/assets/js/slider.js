@@ -11,12 +11,12 @@ var mySwiper = new Swiper('.main-slider', {
   disableOnInteraction: false,
   autoplay: true,
   // If we need pagination
-  pagination: {
-    el: '.swiper-pagination',
-    type: 'bullets',
-    clickable: true,
-    dynamicBullets: true,
-  },
+  // pagination: {
+  //   el: '.swiper-pagination',
+  //   type: 'bullets',
+  //   clickable: true,
+  //   dynamicBullets: true,
+  // },
 
   // Navigation arrows
   navigation: {
