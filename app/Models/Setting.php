@@ -31,6 +31,7 @@ class Setting extends Model
         'notice_board',
         'management_team',
         'about_design',
+        'logo_design',
         'brochure_image',
         'brochure',
         'background_image',

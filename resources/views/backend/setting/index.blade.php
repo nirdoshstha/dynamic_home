@@ -412,7 +412,26 @@
                                                             {{ $setting->about_design == 2 ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="inlineRadio1">Hide</label>
                                                     </div>
+                                                </div>
+                                            </div>
 
+                                            <div class="col-6 py-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <label for="floatingName">Navbar logo design</label>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="logo_design"
+                                                            id="logodesign1" value="0"
+                                                            {{ $setting->logo_design == '0' ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="logodesign1">Square type
+                                                            logo</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="logo_design"
+                                                            id="logodesign2" value="1"
+                                                            {{ $setting->logo_design == 1 ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="logodesign2">Paralel type
+                                                            logo</label>
+                                                    </div>
                                                 </div>
                                             </div>
 
