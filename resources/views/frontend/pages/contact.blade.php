@@ -6,7 +6,6 @@
 
 @section('content')
     @if (isset($data['contact']))
-        )
         <div class="top__header-wrappper" style="background-image: url('{{ asset('storage/' . $data['contact']->image) }}');">
             <div class="overlay">
                 <section id="subheader-title">
@@ -47,34 +46,34 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="label" for="name">Full Name</label>
-                                                    <input type="text" class="form-control" name="name" id="name" value="{{old('name')}}"
-                                                        placeholder="Name" required>
+                                                    <input type="text" class="form-control" name="name" id="name"
+                                                        value="{{ old('name') }}" placeholder="Name" required>
                                                     <span class="text-danger">{{ $errors->first('name') }}</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="label" for="email">Email Address</label>
-                                                    <input type="email" class="form-control" name="email" id="email" value="{{old('email')}}"
-                                                        placeholder="Email" required>
+                                                    <input type="email" class="form-control" name="email" id="email"
+                                                        value="{{ old('email') }}" placeholder="Email" required>
                                                     <span class="text-danger">{{ $errors->first('email') }}</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="label" for="subject">Subject</label>
-                                                    <input type="text" class="form-control" name="subject" id="subject" value="{{old('subject')}}"
-                                                        placeholder="Subject">
+                                                    <input type="text" class="form-control" name="subject" id="subject"
+                                                        value="{{ old('subject') }}" placeholder="Subject">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="label" for="#">Message</label>
-                                                    <textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message">{{old('message')}}</textarea>
+                                                    <textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message">{{ old('message') }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 ">
-                                                <div class="form-group mt-2 mb-4 ">
+                                                {{-- <div class="form-group mt-2 mb-4 ">
                                                     <div class="captcha d-flex justify-content-between">
                                                         <span>{!! captcha_img('math') !!}</span>
                                                         <p class="p-2"></p>
@@ -88,7 +87,7 @@
 
                                                     </div>
                                                     <span class="text-danger">{{ $errors->first('captcha') }}</span>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                             <div class="col-md-12">
                                                 <button type="submit" class="btn btn-hoverable"> <span>Send Message</span>

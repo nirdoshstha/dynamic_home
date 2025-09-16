@@ -166,10 +166,8 @@
             </div>
         </div>
     @endforeach
-
-
-
-
+    <!--End Modal News & Events-->
+    
     @if (setting() && setting()?->about_design == 0)
         <section class="homepage-content-wrapper mx-auto">
             {{-- About Section --}}
@@ -207,10 +205,11 @@
             @else
             @endif
         </section>
+        {{-- {{ asset('frontend/assets/img/bg.png') } --}}
     @elseif(setting() && setting()?->about_design == 1)
         @if (!is_null($data['about_page']))
             <div class="informartion section-padding"
-                style="background-image: url('{{ asset('frontend/assets/img/bg.png') }}'); background-repeat: no-repeat; background-size: cover; background-position: center; background-attachment: fixed;">
+                style="background-image: url('{{ asset('storage/' . setting()->background_image) }}'); background-repeat: no-repeat; background-size: cover; background-position: center; background-attachment: fixed;">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-5 col-md-12">
@@ -228,8 +227,8 @@
                             <div class="aboutus__description wow fadeInUp" data-wow-delay="0.6s"
                                 style="visibility: visible; -webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
                                 <!-- <div class="top__small">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span> Since 2020 </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span> Since 2020 </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div> -->
                                 <div class="info__text-wrapper">
                                     <h2>
                                         <span class="typing">{{ $data['about_page']->name ?? '' }}</span>
@@ -242,11 +241,11 @@
 
                                 </div>
                                 <!-- <div class="info__text-wrapper">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <h2>School Name </h2>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <h2>School Name </h2>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
 
                                 <div class="main__decription mb-5">
-                                    <p> {!! $data['about_page']->description ?? '' !!}</p>
+                                    <p> {!! Str::limit(strip_tags($data['about_page']->description, '<b><i>'), 550) !!}</p>
                                 </div>
                                 <a href="{{ route('frontend.about_single') }}" class="btn btn-hoverable"
                                     target="_blank">
@@ -274,8 +273,8 @@
                             <div class="aboutus__description wow fadeInUp" data-wow-delay="0.6s"
                                 style="visibility: visible; -webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
                                 <!-- <div class="top__small">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span> Since 2020 </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span> Since 2020 </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div> -->
                                 <div class="info__text-wrapper">
                                     <h2>
                                         <span class="typing">About Us</span>
@@ -286,8 +285,8 @@
                                     Aristotle.”
                                 </div>
                                 <!-- <div class="info__text-wrapper">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <h2>School Name </h2>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <h2>School Name </h2>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
 
                                 <div class="main__decription mb-5">
                                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed tempora vel
@@ -315,6 +314,7 @@
         @endif
     @else
     @endif
+
 
     @if (setting() && setting()?->management_team == 0)
         <div class="msg__wrapper py-4">
@@ -390,57 +390,58 @@
     @endif
 
 
+    @if (news() && news()?->status == 0){
 
-    <div class="news-and-events__section section-margin">
-        <div class="container">
-            <div class="row">
-                @if ($data['news_events']->isNotEmpty())
-                    <div
-                        class="col-lg-{{ setting()?->notice_board == 0 ? '9' : '12' }} col-md-12 col-sm-12 mb-0 text-center">
-                        <div class="">
-                            <div class="info__text-wrapper text-center">
-                                <h2> {{ $data['news_event']->title ?? '' }}</h2>
-                                @isset($data['news_event']->sub_title)
-                                    <p>{{ $data['news_event']->sub_title ?? '' }}</p>
-                                @endisset
+        <div class="news-and-events__section section-margin">
+            <div class="container">
+                <div class="row">
+                    @if ($data['news_events']->isNotEmpty())
+                        <div
+                            class="col-lg-{{ setting()?->notice_board == 0 ? '9' : '12' }} col-md-12 col-sm-12 mb-0 text-center">
+                            <div class="">
+                                <div class="info__text-wrapper text-center">
+                                    <h2> {{ $data['news_event']->title ?? '' }}</h2>
+                                    @isset($data['news_event']->sub_title)
+                                        <p>{{ $data['news_event']->sub_title ?? '' }}</p>
+                                    @endisset
+                                </div>
+
+                                <a href="{{ route('frontend.news_events') }}" target="_blank" class="float-end mb-3">All
+                                    Events
+                                    <i class="fa-solid fa-arrow-right"></i></a>
                             </div>
+                            <div class="event__wrapper">
+                                <div class="swiper newSlider">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($data['news_events'] as $news)
+                                            <div class="swiper-slide">
 
-                            <a href="{{ route('frontend.news_events') }}" target="_blank" class="float-end mb-3">All
-                                Events
-                                <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                        <div class="event__wrapper">
-                            <div class="swiper newSlider">
-                                <div class="swiper-wrapper">
-                                    @foreach ($data['news_events'] as $news)
-                                        <div class="swiper-slide">
+                                                <a href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#news-info-{{ $news->id }}">
+                                                    <div class="event-item">
+                                                        <div class="event-image">
+                                                            @isset($news->image)
+                                                                <img src="{{ asset('storage/' . $news->image) }}"
+                                                                    alt="{{ $news->title }}">
+                                                            @endisset
 
-                                            <a href="#" data-bs-toggle="modal"
-                                                data-bs-target="#news-info-{{ $news->id }}">
-                                                <div class="event-item">
-                                                    <div class="event-image">
-                                                        @isset($news->image)
-                                                            <img src="{{ asset('storage/' . $news->image) }}"
-                                                                alt="{{ $news->title }}">
-                                                        @endisset
-
+                                                        </div>
+                                                        <div class="date">
+                                                            <span>{{ $news->created_at->format('Y-m-d') }}</span>
+                                                        </div>
+                                                        <div class="event-details">
+                                                            <h6>{!! Str::limit(strip_tags($news->description), 50) !!}</h6>
+                                                        </div>
                                                     </div>
-                                                    <div class="date">
-                                                        <span>{{ $news->created_at->format('Y-m-d') }}</span>
-                                                    </div>
-                                                    <div class="event-details">
-                                                        <h6>{!! Str::limit(strip_tags($news->description), 50) !!}</h6>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    @endforeach
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @else
-                    {{-- <div class="col-lg-9 col-md-12 col-sm-12 mb-4">
+                    @else
+                        {{-- <div class="col-lg-9 col-md-12 col-sm-12 mb-4">
                         <div class="news-top__header d-flex justify-content-between flex-wrap mb-4">
                             <h2>News & Events</h2>
                             <a href="News-event.html">All Events <i class="fa-solid fa-arrow-right"></i></a>
@@ -565,37 +566,37 @@
                             </div>
                         </div>
                     </div> --}}
-                @endif
+                    @endif
 
-                @if (setting()?->notice_board == 0)
-                    <div class="col-lg-3 col-md-12 col-sm-12">
-                        <div class="right-notice  wow fadeInUp" data-wow-delay="0.1s"
-                            style="visibility: visible; -webkit-animation-delay: 0.1s; -moz-animation-delay: 0.1s; animation-delay: 0.1s;">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5>Notice Board</h5>
-                                    <hr>
-                                    <ul id="style-7">
-                                        @forelse ($data['notices'] as $notice)
-                                            <li>
-                                                <a href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#MoreInfo-{{ $notice->id }}">
-                                                    <p class="fw-bold">{{ $notice->title }}</p>
-                                                    <p>{!! Str::limit(strip_tags($notice->description), 100) !!}</p>
-                                                    <span><i class="fa-solid fa-calendar-days"></i>
-                                                        {{ $notice->created_at->format('Y-m-d') }}</span>
-                                                </a>
-                                            </li>
-                                        @empty
-                                        @endforelse
+                    @if (setting()?->notice_board == 0)
+                        <div class="col-lg-3 col-md-12 col-sm-12">
+                            <div class="right-notice  wow fadeInUp" data-wow-delay="0.1s"
+                                style="visibility: visible; -webkit-animation-delay: 0.1s; -moz-animation-delay: 0.1s; animation-delay: 0.1s;">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>Notice Board</h5>
+                                        <hr>
+                                        <ul id="style-7">
+                                            @forelse ($data['notices'] as $notice)
+                                                <li>
+                                                    <a href="#" data-bs-toggle="modal"
+                                                        data-bs-target="#MoreInfo-{{ $notice->id }}">
+                                                        <p class="fw-bold">{{ $notice->title }}</p>
+                                                        <p>{!! Str::limit(strip_tags($notice->description), 100) !!}</p>
+                                                        <span><i class="fa-solid fa-calendar-days"></i>
+                                                            {{ $notice->created_at->format('Y-m-d') }}</span>
+                                                    </a>
+                                                </li>
+                                            @empty
+                                            @endforelse
 
-                                    </ul>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @else
-                    {{-- <div class="col-lg-3 col-md-12 col-sm-12">
+                    @else
+                        {{-- <div class="col-lg-3 col-md-12 col-sm-12">
                         <div class="right-notice  wow fadeInUp" data-wow-delay="0.1s"
                             style="visibility: visible; -webkit-animation-delay: 0.1s; -moz-animation-delay: 0.1s; animation-delay: 0.1s;">
                             <div class="card">
@@ -641,122 +642,132 @@
                             </div>
                         </div>
                     </div> --}}
-                @endif
-
-            </div>
-        </div>
-    </div>
-
-    @if ($data['videos']->isNotEmpty())
-        <section id="video__album-section" class="section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="info__text-wrapper mb-3 text-center">
-                        <h2> {{ $data['video']->title ?? '' }}</h2>
-                        @isset($data['video']->video_link)
-                            <p>{{ $data['video']->video_link ?? '' }}</p>
-                        @endisset
-                    </div>
-                    @foreach ($data['videos'] as $video)
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mb-3">
-                            <div class="video-item wow fadeInLeft" data-wow-delay="0.1s"
-                                style="visibility: visible; -webkit-animation-delay: 0.1s; -moz-animation-delay: 0.1s; animation-delay: 0.1s;">
-                                <iframe width="100%" height="250" src="{{ $video->video_link }}"
-                                    title="YouTube video player" frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen></iframe>
-                                <div class="video__title text-center">
-                                    <h6>{{ $video->title }}</h6>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+                    @endif
 
                 </div>
             </div>
-        </section>
+        </div>
+        }
+    @else
+    @endif
+
+    @if (album() && album()->status == 0)
+
+        @if ($data['videos']->isNotEmpty())
+            <section id="video__album-section" class="section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="info__text-wrapper mb-3 text-center">
+                            <h2> {{ $data['video']->title ?? '' }}</h2>
+                            @isset($data['video']->video_link)
+                                <p>{{ $data['video']->video_link ?? '' }}</p>
+                            @endisset
+                        </div>
+                        @foreach ($data['videos'] as $video)
+                            <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mb-3">
+                                <div class="video-item wow fadeInLeft" data-wow-delay="0.1s"
+                                    style="visibility: visible; -webkit-animation-delay: 0.1s; -moz-animation-delay: 0.1s; animation-delay: 0.1s;">
+                                    <iframe width="100%" height="250" src="{{ $video->video_link }}"
+                                        title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                                    <div class="video__title text-center">
+                                        <h6>{{ $video->title }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+            </section>
+        @endif
+    @else
     @endif
 
 
-    @if (setting()?->gallery_design == 1)
-        {{-- Single Gallery View --}}
-        <div class="gallery-section pb-5 ">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="top__header wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="info__text-wrapper mb-4 text-center">
-                                <h2>{{ $data['album']->title ?? '' }}</h2>
-                                @isset($data['album']->sub_title)
-                                    <p>{{ $data['album']->sub_title ?? '' }}</p>
-                                @endisset
+    @if (album() && album()->status == 0)
+        @if (setting()?->gallery_design == 1)
+            {{-- Single Gallery View --}}
+            <div class="gallery-section pb-5 ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="top__header wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="info__text-wrapper mb-4 text-center">
+                                    <h2>{{ $data['album']->title ?? '' }}</h2>
+                                    @isset($data['album']->sub_title)
+                                        <p>{{ $data['album']->sub_title ?? '' }}</p>
+                                    @endisset
+                                </div>
+                            </div>
+
+                            <div class="gg-box wow fadeInUp" data-wow-delay="0.2s">
+                                @forelse ($data['galleries'] as $gallery)
+                                    <div class="gg-element">
+                                        <a class="example-image-link" href="{{ image_path($gallery->url) }}"
+                                            data-lightbox="example-set">
+                                            <img src="{{ image_path($gallery->url) }}" alt="Gallery Image">
+                                        </a>
+                                    </div>
+                                @empty
+                                    <h4 class="text-center">No gallery images available.</h4>
+                                @endforelse
                             </div>
                         </div>
+                    </div>
 
-                        <div class="gg-box wow fadeInUp" data-wow-delay="0.2s">
-                            @forelse ($data['galleries'] as $gallery)
-                                <div class="gg-element">
-                                    <a class="example-image-link" href="{{ image_path($gallery->url) }}"
-                                        data-lightbox="example-set">
-                                        <img src="{{ image_path($gallery->url) }}" alt="Gallery Image">
+                </div>
+            </div>
+        @elseif (setting()?->gallery_design == 0)
+            {{-- Album View --}}
+            <section class="album-section">
+                <div class="container">
+                    <div class="top__header text-center wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="info__text-wrapper text-center mb-4">
+                            <h2>{{ $data['album']->title ?? '' }}</h2>
+                            @isset($data['album']->sub_title)
+                                <p>{{ $data['album']->sub_title ?? '' }}</p>
+                            @endisset
+                        </div>
+                    </div>
+
+                    <div class="album__image-section">
+                        <div class="row">
+                            @forelse ($data['albums'] as $album)
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-3">
+                                    <a href="{{ route('frontend.photo_album_gallery', $album->slug) }}">
+                                        <div class="album__item wow fadeInLeft" data-wow-delay="0.1s">
+                                            <div class="overlay"></div>
+                                            <div class="album-img__holder">
+                                                @if ($album->images->count() > 0)
+                                                    <img src="{{ image_path($album->images->first()->url) }}"
+                                                        width="100%" height="100%" alt="{{ $album->title }}">
+                                                @else
+                                                    <img src="{{ asset('frontend/assets/img/info.jpg') }}" width="100%"
+                                                        height="100%" alt="Default Image">
+                                                @endif
+                                            </div>
+                                            <div class="album__title text-center">
+                                                <h5>{{ $album->title }}</h5>
+                                            </div>
+                                        </div>
                                     </a>
                                 </div>
                             @empty
-                                <h4 class="text-center">No gallery images available.</h4>
+                                <h4 class="text-center">No albums available.</h4>
                             @endforelse
                         </div>
                     </div>
-                </div>
 
-            </div>
-        </div>
-    @elseif (setting()?->gallery_design == 0)
-        {{-- Album View --}}
-        <section class="album-section">
-            <div class="container">
-                <div class="top__header text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="info__text-wrapper text-center mb-4">
-                        <h2>{{ $data['album']->title ?? '' }}</h2>
-                        @isset($data['album']->sub_title)
-                            <p>{{ $data['album']->sub_title ?? '' }}</p>
-                        @endisset
+                    {{-- Pagination --}}
+                    <div class="d-flex justify-content-center">
+                        {{ $data['albums']->links() }}
                     </div>
                 </div>
-
-                <div class="album__image-section">
-                    <div class="row">
-                        @forelse ($data['albums'] as $album)
-                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-3">
-                                <a href="{{ route('frontend.photo_album_gallery', $album->slug) }}">
-                                    <div class="album__item wow fadeInLeft" data-wow-delay="0.1s">
-                                        <div class="overlay"></div>
-                                        <div class="album-img__holder">
-                                            @if ($album->images->count() > 0)
-                                                <img src="{{ image_path($album->images->first()->url) }}" width="100%"
-                                                    height="100%" alt="{{ $album->title }}">
-                                            @else
-                                                <img src="{{ asset('frontend/assets/img/info.jpg') }}" width="100%"
-                                                    height="100%" alt="Default Image">
-                                            @endif
-                                        </div>
-                                        <div class="album__title text-center">
-                                            <h5>{{ $album->title }}</h5>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        @empty
-                            <h4 class="text-center">No albums available.</h4>
-                        @endforelse
-                    </div>
-                </div>
-
-                {{-- Pagination --}}
-                <div class="d-flex justify-content-center">
-                    {{ $data['albums']->links() }}
-                </div>
-            </div>
-        </section>
+            </section>
+        @endif
+    @else
     @endif
 
 

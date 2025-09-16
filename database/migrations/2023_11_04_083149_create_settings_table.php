@@ -36,6 +36,7 @@ return new class extends Migration
             $table->boolean('management_team')->default(0);
             $table->boolean('about_design')->default(0);
             $table->boolean('logo_design')->default(0);
+            $table->boolean('is_counter')->default(0);
 
             $table->string('brochure_image')->nullable();
             $table->string('brochure')->nullable();

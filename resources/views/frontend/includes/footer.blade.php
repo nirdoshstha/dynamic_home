@@ -18,22 +18,16 @@
                         </a>
                     @endif
                 </div>
-
-                {{-- <div style="margin-left: 12px;"><a href='https://www.free-website-hit-counter.com'><img src='https://www.free-website-hit-counter.com/c.php?d=5&id=160577&s=5' border='0' alt='Free Website Hit Counter'></a><br / ><small><a href='https://www.free-website-hit-counter.com' title="Free Website Hit Counter"></a></small></div> --}}
-                {{-- <div style="margin-left: 12px;"><a href='https://www.free-website-hit-counter.com'><img
-                            src='https://www.free-website-hit-counter.com/c.php?d=6&id=172165&s=5' border='0'
-                            alt='Free Website Hit Counter'></a><br /><small><a
-                            href='https://www.free-website-hit-counter.com'
-                            title="Free Website Hit Counter"></a></small></div> --}}
-                <div id="sfcugxr441apg7hhp7h98bsyta3bjjqczrd"></div>
-                <script type="text/javascript"
-                    src="https://counter5.optistats.ovh/private/counter.js?c=ugxr441apg7hhp7h98bsyta3bjjqczrd&down=async" async>
-                </script><noscript><a href="https://www.freecounterstat.com"
-                        title="website counters"><img
-                            src="https://counter5.optistats.ovh/private/freecounterstat.php?c=ugxr441apg7hhp7h98bsyta3bjjqczrd"
-                            border="0" title="website counters" alt="website counters"></a></noscript>
-
-
+                {{-- <h6>Visitor Counter</h6>     --}}
+                @if (setting() && setting()?->is_counter == 0)
+                    <div id="sfc228xt1t2wlsdgqsrpl9txwfng492sajl"></div>
+                    <script type="text/javascript"
+                        src="https://counter5.optistats.ovh/private/counter.js?c=228xt1t2wlsdgqsrpl9txwfng492sajl&down=async" async>
+                    </script>
+                    <noscript><a href="https://www.freecounterstat.com" title="free counter"><img
+                                src="https://counter5.optistats.ovh/private/freecounterstat.php?c=228xt1t2wlsdgqsrpl9txwfng492sajl"
+                                border="0" title="free counter" alt="free counter"></a></noscript>
+                @endif
 
             </div>
 
@@ -63,20 +57,23 @@
             <div class="col-xs-12 col-md-6 col-lg-3">
                 <h5>Quick links</h5>
                 <ul class="list-unstyled quick-links">
-                    <li><a href="{{ route('frontend.index') }}"><i class="fa fa-angle-double-right"></i>Home</a></li>
+                    <li><a href="{{ route('frontend.index') }}" target="_blank"><i
+                                class="fa fa-angle-double-right"></i>Home</a></li>
                     @if (about() && about()?->status == 0)
-                        <li><a href="{{ route('frontend.about_single') }}"><i
+                        <li><a href="{{ route('frontend.about_single') }}" target="_blank"><i
                                     class="fa fa-angle-double-right"></i>About</a>
                         </li>
                     @endif
 
                     @if (album() && album()?->status == 0)
-                        <li><a href="{{ route('frontend.photo_album') }}"><i
+                        <li><a href="{{ route('frontend.photo_album') }}" target="_blank"><i
                                     class="fa fa-angle-double-right"></i>Gallery</a></li>
                     @endif
-                    <li><a href="{{ route('frontend.contact') }}"><i class="fa fa-angle-double-right"></i>Contact
+                    <li><a href="{{ route('frontend.contact') }}" target="_blank"><i
+                                class="fa fa-angle-double-right"></i>Contact
                             Us</a></li>
-                    <li><a href="{{ route('login') }}"><i class="fa fa-angle-double-right"></i>Login</a></li>
+                    <li><a href="{{ route('login') }}" target="_blank"><i
+                                class="fa fa-angle-double-right"></i>Login</a></li>
                     <li><a href="{{ route('frontend.online_register') }}" target="_blank"><i
                                 class="fa fa-angle-double-right"></i>Registration Form </a></li>
                 </ul>

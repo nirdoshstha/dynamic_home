@@ -32,6 +32,7 @@ class Setting extends Model
         'management_team',
         'about_design',
         'logo_design',
+        'is_counter',
         'brochure_image',
         'brochure',
         'background_image',

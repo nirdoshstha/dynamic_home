@@ -88,7 +88,8 @@ class FrontendController extends Controller
 
     public function aboutSingle()
     {
-        $data['about'] = About::where('type', 'page')->firstOrFail();
+        // $data['about'] = About::where('type', 'page')->firstOrFail();
+        $data['about_page'] = About::where('type', 'page')->firstOrFail();
         return view('frontend.pages.about-single', compact('data'));
     }
 

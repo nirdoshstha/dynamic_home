@@ -80,9 +80,7 @@
                     <div class="location listed__items">
                         <span><i class="fa-solid fa-location-dot"></i> {{ setting()->address ?? '' }}</span>
                     </div>
-                    <div class="location listed__items">
-                        <span> <a href="{{ route('frontend.alumni') }}"> Alumni</a></span>
-                    </div>
+
                     <div class="social_icon d-flex justify-content-center align-items-center listed__items">
                         @foreach (social_media() as $socials)
                             <a href="{{ $socials->link }}"><i class="{{ $socials->icon }}"></i></a>
@@ -242,26 +240,36 @@
                 @if (downloadMenu() && downloadMenu()?->status == 0)
                     <li class="nav-item dropdown {{ Request::is('download') ? 'active' : '' }}">
                         {{-- <a class="nav-link dropdown-toggle" href="{{ route('frontend.download') }}"
-                                id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Downloads
-                            </a> --}}
+                            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Downloads
+                        </a> --}}
                         <a class="nav-link dropdown-toggle" href="{{ route('frontend.download') }}"
-                            id="navbarDropdownMenuLink" role="button">
+                            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" onclick="window.location='{{ route('frontend.download') }}'">
                             Downloads
                         </a>
+
+
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
 
-                            {{-- @foreach (downloads() as $download)
-                                    <li class="{{ Request::is('download') ? 'active' : '' }}">
-                                        <a class="dropdown-item" target="_blank"
-                                            href="{{ asset('storage/' . $download->image) }}">
-                                            {{ $download->title }}</a>
-                                    </li>
-                                @endforeach --}}
+                            @foreach (downloads() as $download)
+                                <li class="{{ Request::is('download') ? 'active' : '' }}">
+                                    <a class="dropdown-item" target="_blank"
+                                        href="{{ asset('storage/' . $download->image) }}">
+                                        {{ $download->title }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </li>
                 @endif
+
+
+
+                <li class="nav-item {{ Request::is('contact') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('frontend.alumni') }}">Alumni</a>
+                </li>
+
                 <li class="nav-item {{ Request::is('contact') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('frontend.contact') }}">Contact Us</a>
                 </li>

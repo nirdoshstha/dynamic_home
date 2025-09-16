@@ -88,7 +88,8 @@
                                                         value="{{ isset($setting) ? $setting->primary_color : '#007aff' }}"
                                                         class="form-control" id="floatingSlogan" placeholder="Slogan">
 
-                                                    <label for="floatingSlogan"><span class="fw-bold">Top Navbar Color
+                                                    <label for="floatingSlogan"><span class="fw-normal text-primary">Top
+                                                            Navbar Color
                                                             ({{ $setting->primary_color ?? '' }}) </span></label>
                                                 </div>
                                             </div>
@@ -97,7 +98,8 @@
                                                     <input type="color" name="secondary_color"
                                                         value="{{ isset($setting) ? $setting->secondary_color : '#007aff' }}"
                                                         class="form-control" id="floatingSlogan" placeholder="Slogan">
-                                                    <label for="floatingSlogan"><span class="fw-bold">Footer Gradient
+                                                    <label for="floatingSlogan"><span class="fw-normal text-primary">Footer
+                                                            Gradient
                                                             ({{ $setting->secondary_color ?? '' }}) </span></label>
                                                 </div>
                                             </div>
@@ -106,7 +108,8 @@
                                                     <input type="color" name="navbar_color"
                                                         value="{{ isset($setting) ? $setting->navbar_color : '#007aff' }}"
                                                         class="form-control" id="floatingSlogan" placeholder="Navbar Color">
-                                                    <label for="floatingSlogan"><span class="fw-bold">Navbar Color
+                                                    <label for="floatingSlogan"><span class="fw-normal text-primary">Navbar
+                                                            Color
                                                             ({{ $setting->navbar_color ?? '' }}) </span></label>
                                                 </div>
                                             </div>
@@ -115,7 +118,8 @@
                                                     <input type="color" name="title_color"
                                                         value="{{ isset($setting) ? $setting->title_color : '#007aff' }}"
                                                         class="form-control" id="floatingSlogan" placeholder="Title Color">
-                                                    <label for="floatingSlogan"><span class="fw-bold">Title Color
+                                                    <label for="floatingSlogan"><span class="fw-normal text-primary">Title
+                                                            Color
                                                             ({{ $setting->title_color ?? '' }}) </span></label>
                                                 </div>
                                             </div>
@@ -290,7 +294,9 @@
 
                                             <div class="col-6">
                                                 <div class="d-flex justify-content-between mt-4">
-                                                    <label for="floatingTextarea">Is Google map display on Home ?</label>
+                                                    <label for="floatingTextarea" class="fw-normal text-primary">Is Google
+                                                        map display
+                                                        on Home ?</label>
                                                     <div class="form-check form-switch">
                                                         <input class="form-check-input show_hide_map"
                                                             data-id="{{ $setting->id }}" type="checkbox" role="switch"
@@ -302,7 +308,9 @@
 
                                             <div class="col-6 py-3">
                                                 <div class="d-flex justify-content-between">
-                                                    <label for="floatingName">Is Gallery design on Home ?</label>
+                                                    <label for="floatingName" class="fw-normal text-primary">Is Gallery
+                                                        design on Home
+                                                        ?</label>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio"
                                                             name="gallery_design" id="inlineRadio2" value="0"
@@ -328,7 +336,9 @@
 
                                             <div class="col-6 py-3">
                                                 <div class="d-flex justify-content-between">
-                                                    <label for="floatingTextarea">Is Scrolling News display on Home
+                                                    <label for="floatingTextarea" class="fw-normal text-primary">Is
+                                                        Scrolling News
+                                                        display on Home
                                                         ?</label>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio"
@@ -347,7 +357,9 @@
 
                                             <div class="col-6 py-3">
                                                 <div class="d-flex justify-content-between">
-                                                    <label for="floatingTextarea">Is Notice Board display on Home
+                                                    <label for="floatingTextarea" class="fw-normal text-primary">Is Notice
+                                                        Board
+                                                        display on Home
                                                         ?</label>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio"
@@ -366,7 +378,9 @@
 
                                             <div class="col-6 py-3">
                                                 <div class="d-flex justify-content-between">
-                                                    <label for="floatingName">Management Team design on Home ?</label>
+                                                    <label for="floatingName" class="fw-normal text-primary">Management
+                                                        Team design on
+                                                        Home ?</label>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio"
                                                             name="management_team" id="inlineRadio2" value="0"
@@ -392,7 +406,9 @@
 
                                             <div class="col-6 py-3">
                                                 <div class="d-flex justify-content-between">
-                                                    <label for="floatingName">About us design on Home</label>
+                                                    <label for="floatingName" class="fw-normal text-primary">About us
+                                                        design on
+                                                        Home</label>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio"
                                                             name="about_design" id="inlineRadio2" value="0"
@@ -417,7 +433,8 @@
 
                                             <div class="col-6 py-3">
                                                 <div class="d-flex justify-content-between">
-                                                    <label for="floatingName">Navbar logo design</label>
+                                                    <label for="floatingName" class="fw-normal text-primary">Navbar logo
+                                                        design</label>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" name="logo_design"
                                                             id="logodesign1" value="0"
@@ -435,13 +452,32 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-6 py-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <label for="floatingTextarea" class="fw-normal text-primary">
+                                                        Is Visitor Counter Display on Footer?</label>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="is_counter"
+                                                            id="inlineRadio2" value="0"
+                                                            {{ $setting->is_counter == '0' ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="inlineRadio2">Yes</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="is_counter"
+                                                            id="inlineRadio1" value="1"
+                                                            {{ $setting->is_counter == 1 ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="inlineRadio1">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="col-md-6">
                                                 <div class="form-floating d-flex justify-content-between">
                                                     <input type="file" name="background_image" class="form-control"
                                                         id="floatingbackground_image" placeholder="Your Background image">
                                                     @if (isset($setting->background_image))
                                                         <img src="{{ asset('storage/' . $setting->background_image) }}"
-                                                            width="100" height="40" class="img-thumbnail"
+                                                            width="50" height="40" class="img-thumbnail"
                                                             style="margin-left: 15px;">
                                                     @endif
 
@@ -450,7 +486,7 @@
                                                 </div>
                                                 <span class="text-danger">{{ $errors->first('logo') }}</span>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-floating d-flex justify-content-between">
                                                     <input type="file" name="school_image" class="form-control"
                                                         id="floatingFavicon" placeholder="Fab Icon">
@@ -465,7 +501,7 @@
                                                 </div>
                                                 <span class="text-danger">{{ $errors->first('school_image') }}</span>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-floating d-flex justify-content-between">
                                                     <input type="file" name="college_image" class="form-control"
                                                         id="floatingschoolimage" placeholder="Your school image">
