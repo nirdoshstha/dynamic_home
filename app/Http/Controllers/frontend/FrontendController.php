@@ -31,7 +31,7 @@ class FrontendController extends Controller
         $data['about_page'] = About::where('type', 'page')->firstOrFail();
 
         $data['message'] = Message::where('type', 'page')->firstOrFail();
-        $data['messages'] = Message::active()->latest()->where('type', 'post')->take(3)->get();
+        $data['messages'] = Message::active()->latest()->where('type', 'post')->get();
 
         $data['news_event'] = NewsEvent::where('type', 'page')->firstOrFail();
         $data['news_events'] = NewsEvent::active()->latest()->where('type', 'post')->get();

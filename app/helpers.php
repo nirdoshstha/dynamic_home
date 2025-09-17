@@ -183,6 +183,14 @@ if (!function_exists('usefulllinks')) {
     }
 }
 
+if (!function_exists('topnavbarlinks')) {
+    function topnavbarlinks()
+    {
+        $topnavbarlinks = General::active()->where('type', 'top_navbar_links')->orderBy('rank', 'asc')->get();
+        return $topnavbarlinks;
+    }
+}
+
 if (!function_exists('modals')) {
     function modals()
     {

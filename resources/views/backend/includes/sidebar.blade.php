@@ -133,11 +133,27 @@
             </a>
         </li>
 
+
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('useful_links.index') }}">
-                <i class="bi bi-list-stars"></i>
-                <span>Useful Links</span>
+            <a class="nav-link collapsed @if (\Route::is('useful_links.index', 'top_navbar_links.index')) active @endif"
+                data-bs-target="#general-nav" data-bs-toggle="collapse" href="#" aria-expanded="false">
+                <i class="bi bi-card-image"></i><span>General</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
+            <ul id="general-nav" class="nav-content collapse @if (\Route::is('useful_links.index', 'top_navbar_links.index')) show @endif"
+                data-bs-parent="#sidebar-nav" style="">
+                <li>
+                    <a href="{{ route('useful_links.index') }}"
+                        class="@if (\Route::is('useful_links.index')) active @endif">
+                        <i class="bi bi-circle"></i><span>Useful Links</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('top_navbar_links.index') }}"
+                        class="@if (\Route::is('top_navbar_links.index')) active @endif">
+                        <i class="bi bi-circle"></i><span>Top Navbar Links</span>
+                    </a>
+                </li>
+            </ul>
         </li>
 
         <li class="nav-item">

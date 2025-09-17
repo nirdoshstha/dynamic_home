@@ -80,12 +80,20 @@
                     <div class="location listed__items">
                         <span><i class="fa-solid fa-location-dot"></i> {{ setting()->address ?? '' }}</span>
                     </div>
+                    @foreach (topnavbarlinks() as $links)
+                        <div class="location listed__items">
+                            <span>
+                                <a href="{{ $links->link }}" class="me-2">
+                                    {{ $links->name }}</span>
+                            </a>
+                        </div>
+                    @endforeach
 
-                    <div class="social_icon d-flex justify-content-center align-items-center listed__items">
+                    {{-- <div class="social_icon d-flex justify-content-center align-items-center listed__items">
                         @foreach (social_media() as $socials)
                             <a href="{{ $socials->link }}"><i class="{{ $socials->icon }}"></i></a>
                         @endforeach
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

@@ -1757,3 +1757,179 @@ header .navbar .dropdown-menu>li:hover>.dropdown-submenu {
 }
 
 /* end Home page About us design change*/
+
+
+
+/* Social media and counter section design change */
+
+.side__social-media {
+    position: fixed;
+    right: 20px;
+    top: 18rem;
+    z-index: 999;
+}
+
+.side__social-media {
+    position: fixed;
+    right: 20px;
+    top: 18rem;
+    z-index: 999;
+}
+
+.side__social-media ul {
+    margin: 0px;
+    padding: 0px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+.side__social-media ul li {
+    background-color: white;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    -webkit-transition: 0.3s all ease-in-out;
+    transition: 0.3s all ease-in-out;
+    -webkit-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    overflow: hidden;
+}
+
+.side__social-media ul li i {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 8px 0;
+    font-size: 24px;
+}
+
+.side__social-media ul li:hover {
+    background-color: #7e2b24;
+}
+
+.side__social-media ul li:hover i {
+    color: white;
+}
+
+.side__social-media ul li .facebook {
+    background-color: #1877f2;
+    color: white;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+
+.side__social-media ul li .facebook:hover {
+    background-color: #7e2b24;
+}
+
+.side__social-media ul li .facebook:hover i {
+    color: white;
+}
+
+.side__social-media ul li .instagram {
+    background: -webkit-gradient(linear, left top, right top, from(#f32170), color-stop(#ff6b08), color-stop(#cf23cf), to(#eedd44));
+    background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.side__social-media ul li .instagram:hover {
+    background: -webkit-gradient(linear, left top, right top, from(white));
+    background: linear-gradient(to right, white);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.side__social-media ul li .twitter {
+    color: #1d9bf0;
+}
+
+.side__social-media ul li .youtube {
+    color: red;
+}
+
+
+.white__counter-box {
+    margin-right: 6rem;
+}
+
+.white__counter-box .icon-image {
+    background-color: #e3ebfd94;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    position: relative;
+}
+
+.white__counter-box .icon-image img {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    width: 2rem;
+    height: auto;
+}
+
+.white__counter-box .number-holder h1 {
+    font-weight: 600;
+    font-size: 36px;
+    margin: 0;
+}
+
+.white__counter-box .number-holder p {
+    color: #888888;
+}
+
+@media screen and (max-width: 1400px) {
+    .white__counter-box {
+        margin-right: 3rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .white__counter-box {
+        margin-right: 1rem;
+    }
+
+    .white__counter-box .number-holder h1 {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .counter {
+        -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+        justify-content: center !important;
+    }
+}
+@media screen and (max-width: 768px) {
+    .side__social-media {
+        right: 10px;
+        top: 15rem;
+    }
+
+    .side__social-media ul li {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .side__social-media ul li i {
+        font-size: 20px;
+        padding: 6px 0;
+    }
+
+    .white__counter-box {
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .white__counter-box .number-holder h1 {
+        font-size: 24px;
+    }
+}

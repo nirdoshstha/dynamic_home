@@ -28,6 +28,7 @@ use App\Http\Controllers\backend\UsefulLinksController;
 use App\Http\Controllers\backend\upload\ImageController;
 use App\Http\Controllers\backend\ScrollingTextController;
 use App\Http\Controllers\backend\OnlineRegisterController;
+use App\Http\Controllers\backend\TopNavbarLinkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -162,6 +163,10 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
     //Useful Links
     Route::resource('useful-links', UsefulLinksController::class)->names('useful_links');
     Route::get('useful-links-status', [UsefulLinksController::class, 'usefulinksStatus'])->name('usefullink.status');
+
+    //Top Navbar Links
+    Route::resource('top-navbar-links', TopNavbarLinkController::class)->names('top_navbar_links');
+    Route::get('top-navbar-links-status', [TopNavbarLinkController::class, 'topNavbarLinkStatus'])->name('top_navbar_links.status');
 
     Route::resource('modal', ModalController::class)->names('modal');
     Route::get('modal-status', [ModalController::class, 'modalStatus'])->name('modal.status');

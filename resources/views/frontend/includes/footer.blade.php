@@ -106,7 +106,7 @@
                 </div>
             @endif
         </div>
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
                 <ul class="list-unstyled list-inline social text-center">
                     @foreach (social_media() as $social)
@@ -117,7 +117,7 @@
                 </ul>
             </div>
             <hr>
-        </div>
+        </div> --}}
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
                 <p>2023 © All right Reversed | Designed by <a class="h6" href="https://allstar.com.np/"
