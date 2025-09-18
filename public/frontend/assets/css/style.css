@@ -1137,7 +1137,7 @@ header .navbar .dropdown-menu>li:hover>.dropdown-submenu {
 .msg__wrapper .message-item .text__holder {
     position: relative;
     padding: 10px;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .msg__wrapper .message-item .text__holder h3 {
@@ -1908,6 +1908,7 @@ header .navbar .dropdown-menu>li:hover>.dropdown-submenu {
         justify-content: center !important;
     }
 }
+
 @media screen and (max-width: 768px) {
     .side__social-media {
         right: 10px;

@@ -19,7 +19,9 @@ use App\Models\OnlineRegistration;
 use App\Http\Controllers\Controller;
 use App\Models\Alumni;
 use App\Models\Download;
+use App\Models\General;
 use App\Models\Kindergarten;
+use App\Rules\ReCaptcha;
 use Illuminate\Contracts\Session\Session;
 
 class FrontendController extends Controller
@@ -28,6 +30,7 @@ class FrontendController extends Controller
 
     public function index()
     {
+        $data = [];
         $data['about_page'] = About::where('type', 'page')->firstOrFail();
 
         $data['message'] = Message::where('type', 'page')->firstOrFail();
@@ -46,6 +49,8 @@ class FrontendController extends Controller
 
         $data['testimonial'] = Testimonial::where('type', 'page')->firstOrFail();
         $data['testimonials'] = Testimonial::active()->where('type', 'post')->get();
+
+        $data['counters'] = General::active()->where('type', 'counter')->take(4)->get();
 
         return view('frontend.index', compact('data'));
     }
@@ -143,12 +148,15 @@ class FrontendController extends Controller
 
     public function sendMessage(Request $request)
     {
+
         $request->validate([
             'name' => 'required|string|max:55',
             'email' => 'required',
             'message' => 'required|max:500',
-            'captcha' => 'required|captcha'
+            'g-recaptcha-response' => ['required', new ReCaptcha]
         ]);
+
+
 
         try {
             $data = $request->all();
@@ -185,8 +193,9 @@ class FrontendController extends Controller
             'address' => 'required',
             'phone' => 'required',
             'father_name' => 'required',
-            'mother_name' => 'required',
-            'captcha' => 'required|captcha'
+            'mother_name' => 'required', 
+            'g-recaptcha-response' => ['required', new ReCaptcha]
+
         ]);
         try {
             $data = $request->except('image');

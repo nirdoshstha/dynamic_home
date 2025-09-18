@@ -153,6 +153,12 @@
                         <i class="bi bi-circle"></i><span>Top Navbar Links</span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('counter.index') }}" class="@if (\Route::is('counter.index')) active @endif">
+                        <i class="bi bi-circle"></i><span>Counter</span>
+                    </a>
+                </li>
             </ul>
         </li>
 

@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-    Useful Links | Dashboard
+    Counter | Dashboard
 @endsection
 
 @section('sub_title', $panel ?? '');
@@ -61,8 +61,8 @@
                             <div class="col-md-5">
                                 <div class="form-floating">
                                     <input type="text" name="link" class="form-control link" value=""
-                                        id="floatingName" placeholder="Link Name">
-                                    <label for="floatingName">Link</label>
+                                        id="floatingName" placeholder="Number">
+                                    <label for="floatingName">Count Number</label>
                                 </div>
                             </div>
 
@@ -181,35 +181,35 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data['posts'] as $usefullink)
+                                @foreach ($data['posts'] as $counter)
                                     <tr data-index="0">
                                         <td> {{ $loop->iteration }} </td>
                                         <td>
-                                            <small> {{ $usefullink->name }} </small>
+                                            <small> {{ $counter->name }} </small>
                                         </td>
-                                        <td><small>{{ $usefullink->link }}</small></td>
+                                        <td><small>{{ $counter->link }}</small></td>
 
-                                        <td><small>{{ $usefullink->rank }}</small></td>
+                                        <td><small>{{ $counter->rank }}</small></td>
 
                                         <td>
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input check-uncheck"
-                                                    data-id="{{ $usefullink->id }}" type="checkbox" role="switch"
+                                                    data-id="{{ $counter->id }}" type="checkbox" role="switch"
                                                     id="flexSwitchCheckChecked"
-                                                    {{ $usefullink->status == '0' ? 'checked' : '' }}>
+                                                    {{ $counter->status == '0' ? 'checked' : '' }}>
 
                                             </div>
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-around">
                                                 <a href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#viewPost-{{ $usefullink->id }}">
+                                                    data-bs-target="#viewPost-{{ $counter->id }}">
                                                     <i class="bi bi-eye-fill fs-5 p-2 text-success"></i></a>
                                                 <a href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#editPost-{{ $usefullink->id }}">
+                                                    data-bs-target="#editPost-{{ $counter->id }}">
                                                     <i class="bi bi-pencil-square fs-5 p-2"></i></a>
 
-                                                <form action="{{ route($base_route . 'destroy', $usefullink->id) }}"
+                                                <form action="{{ route($base_route . 'destroy', $counter->id) }}"
                                                     method="POST" class="main_form" enctype="multipart/form-data">
                                                     @csrf
                                                     @method('DELETE')
@@ -230,8 +230,8 @@
         </div>
 
         {{-- Post View  --}}
-        @foreach ($data['posts'] as $usefullink)
-            <div class="modal fade" id="viewPost-{{ $usefullink->id }}" tabindex="-1" aria-labelledby="viewPostLabel"
+        @foreach ($data['posts'] as $counter)
+            <div class="modal fade" id="viewPost-{{ $counter->id }}" tabindex="-1" aria-labelledby="viewPostLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -245,32 +245,32 @@
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Title</label>
                                 <div class="col-sm-6">
                                     <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                                        value="{{ $usefullink->name ?? '' }}">
+                                        value="{{ $counter->name ?? '' }}">
                                 </div>
                             </div>
 
                             <div class="mb-1 row">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Link</label>
+                                <label for="inputPassword" class="col-sm-2 col-form-label">Count</label>
                                 <div class="col-sm-6">
-                                    <small>{{ $usefullink->link ?? '' }}</small>
+                                    <small>{{ $counter->link ?? '' }}</small>
                                 </div>
                             </div>
 
                             <div class="mb-1 row">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Rank</label>
                                 <div class="col-sm-6">
-                                    <small>{{ $usefullink->rank ?? '' }}</small>
+                                    <small>{{ $counter->rank ?? '' }}</small>
                                 </div>
                             </div>
 
                             <div class="mb-1 row">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Created by</label>
                                 <div class="col-sm-4 mt-2">
-                                    <small>{{ $usefullink->createdBy?->name ?? '' }}</small>
+                                    <small>{{ $counter->createdBy?->name ?? '' }}</small>
                                 </div>
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Created by</label>
                                 <div class="col-sm-4 mt-2">
-                                    <small>{{ $usefullink->createdBy?->name ?? '' }}</small>
+                                    <small>{{ $counter->createdBy?->name ?? '' }}</small>
                                 </div>
                             </div>
                         </div>
@@ -293,7 +293,7 @@
             $('.check-uncheck').click(function() {
                 let id = $(this).attr('data-id');
                 $.ajax({
-                    url: "{{ route('usefullink.status') }}",
+                    url: "{{ route('counter.status') }}",
                     data: {
                         id: id
                     },

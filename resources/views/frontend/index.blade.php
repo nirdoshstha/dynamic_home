@@ -233,8 +233,8 @@
                             <div class="aboutus__description wow fadeInUp" data-wow-delay="0.6s"
                                 style="visibility: visible; -webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
                                 <!-- <div class="top__small">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span> Since 2020 </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span> Since 2020 </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
                                 <div class="info__text-wrapper">
                                     <h2>
                                         <span class="typing">{{ $data['about_page']->name ?? '' }}</span>
@@ -247,8 +247,8 @@
 
                                 </div>
                                 <!-- <div class="info__text-wrapper">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <h2>School Name </h2>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <h2>School Name </h2>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
 
                                 <div class="main__decription mb-5">
                                     <p> {!! Str::limit(strip_tags($data['about_page']->description, '<b><i>'), 550) !!}</p>
@@ -279,8 +279,8 @@
                             <div class="aboutus__description wow fadeInUp" data-wow-delay="0.6s"
                                 style="visibility: visible; -webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
                                 <!-- <div class="top__small">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span> Since 2020 </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span> Since 2020 </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
                                 <div class="info__text-wrapper">
                                     <h2>
                                         <span class="typing">About Us</span>
@@ -291,8 +291,8 @@
                                     Aristotle.”
                                 </div>
                                 <!-- <div class="info__text-wrapper">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <h2>School Name </h2>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <h2>School Name </h2>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
 
                                 <div class="main__decription mb-5">
                                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed tempora vel
@@ -322,47 +322,33 @@
     @endif
 
 
-    <section>
-        <div class="container py-5">
+    <section class="counter-section section-padding" style="margin-top: 50px">
+        <div class="container">
             <div class="row d-flex align-items-center justify-content-center">
-                <div class="col-lg-12 col-md-12 py-5">
-                    <div class="d-flex justify-content-center flex-wrap gap-4" id="counter-section">
-                        <div class="white__counter-box d-flex justify-content-between">
-                            <div class="icon-image me-3">
-                                <img src="{{ asset('frontend/assets/img/icone-user.png') }}" alt="">
+                <div class="col-lg-12 col-md-12">
+                    <div class="d-flex justify-content-center flex-wrap" id="counter-section">
+                        @foreach ($data['counters'] as $counter)
+                            <div class="white__counter-box d-flex justify-content-between">
+                                <div class="icon-image me-3">
+                                    @if ($loop->index == 0)
+                                        <img src="{{ asset('frontend/assets/img/icone-user.png') }}" alt="">
+                                    @elseif ($loop->index == 1)
+                                        <img src="{{ asset('frontend/assets/img/icon-file.png') }}" alt="">
+                                    @elseif ($loop->index == 2)
+                                        <img src="{{ asset('frontend/assets/img/icon-building.png') }}" alt="">
+                                    @elseif ($loop->index == 3)
+                                        <img src="{{ asset('frontend/assets/img/analytics.png') }}" alt="">
+                                    @else
+                                        <img src="{{ asset('frontend/assets/img/icone-user.png') }}" alt="">
+                                    @endif
+                                </div>
+                                <div class="number-holder">
+                                    <h1><span>{{ $counter->link }}</span>+</h1>
+                                    <p class="fs-6">{{ $counter->name }}</p>
+                                </div>
                             </div>
-                            <div class="number-holder">
-                                <h1><span>1500</span>K+</h1>
-                                <p>Teacher</p>
-                            </div>
-                        </div>
-                        <div class="white__counter-box d-flex justify-content-between">
-                            <div class="icon-image me-3">
-                                <img src="{{ asset('frontend/assets/img/icon-file.png') }}" alt="">
-                            </div>
-                            <div class="number-holder">
-                                <h1><span>2550</span>K+</h1>
-                                <p>Students</p>
-                            </div>
-                        </div>
-                        <div class="white__counter-box d-flex justify-content-between">
-                            <div class="icon-image me-3">
-                                <img src="{{ asset('frontend/assets/img/icon-building.png') }}" alt="">
-                            </div>
-                            <div class="number-holder">
-                                <h1><span>675</span>K+</h1>
-                                <p>Course</p>
-                            </div>
-                        </div>
-                        <div class="white__counter-box d-flex justify-content-between">
-                            <div class="icon-image me-3">
-                                <img src="{{ asset('frontend/assets/img/analytics.png') }}" alt="">
-                            </div>
-                            <div class="number-holder">
-                                <h1><span>1275</span>K+</h1>
-                                <p>File</p>
-                            </div>
-                        </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
@@ -371,9 +357,9 @@
 
 
     @if (setting() && setting()?->management_team == 0)
-        <div class="msg__wrapper py-4">
+        <div class="msg__wrapper">
             <div class="container">
-                <div class="row py-5">
+                <div class="row">
                     <div class="info__text-wrapper text-center mb-5">
                         <h2> {{ $data['message']->title ?? '' }}</h2>
                         <h2> {{ $data['message']->sub_title ?? '' }}</h2>
@@ -413,7 +399,7 @@
             </div>
         </div>
     @elseif (setting() && setting()?->management_team == 1)
-        <div class="msg__wrapper py-4">
+        <div class="msg__wrapper">
             <div class="container">
                 <div class="row py-5">
                     <div class="info__text-wrapper text-center mb-5">
@@ -852,7 +838,7 @@
                     </div>
                     <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay=".5s">
 
-                        @foreach ($data['testimonials'] as $testimonial)
+                        @forelse ($data['testimonials'] as $testimonial)
                             <div class="testimonial-item border p-4">
                                 <div class="d-flex align-items-center">
 
@@ -876,7 +862,9 @@
                                     </p>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                         
+                        @endforelse
                     </div>
                 </div>
             </div>

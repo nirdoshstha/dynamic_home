@@ -40,14 +40,15 @@
                                     {{ session('status') }}
                                 </div>
                             @endif --}}
-                                    <form action="{{ route('frontend.send_message') }}" method="POST" class="contactForm">
+                                    <form action="{{ route('frontend.send_message') }}" method="POST" class="contactForm"
+                                        id="contactUSForm">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="label" for="name">Full Name</label>
                                                     <input type="text" class="form-control" name="name" id="name"
-                                                        value="{{ old('name') }}" placeholder="Name" required>
+                                                        value="{{ old('name') }}" placeholder="Name">
                                                     <span class="text-danger">{{ $errors->first('name') }}</span>
                                                 </div>
                                             </div>
@@ -55,7 +56,7 @@
                                                 <div class="form-group">
                                                     <label class="label" for="email">Email Address</label>
                                                     <input type="email" class="form-control" name="email" id="email"
-                                                        value="{{ old('email') }}" placeholder="Email" required>
+                                                        value="{{ old('email') }}" placeholder="Email">
                                                     <span class="text-danger">{{ $errors->first('email') }}</span>
                                                 </div>
                                             </div>
@@ -73,21 +74,17 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12 ">
-                                                {{-- <div class="form-group mt-2 mb-4 ">
+                                                <div class="form-group mt-2 mb-4 ">
                                                     <div class="captcha d-flex justify-content-between">
-                                                        <span>{!! captcha_img('math') !!}</span>
-                                                        <p class="p-2"></p>
-                                                        <button type="button" class="btn btn-danger" id="reload"
-                                                            style="width: 100px; height:40px;">
-                                                            &#x21bb;
-                                                        </button>
-                                                        <p class="p-2"></p>
-                                                        <input type="text" name="captcha" class="form-control"
-                                                            placeholder="Enter Captcha">
+                                                        @if ($errors->has('g-recaptcha-response'))
+                                                            <span
+                                                                class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+                                                        @endif
 
                                                     </div>
                                                     <span class="text-danger">{{ $errors->first('captcha') }}</span>
-                                                </div> --}}
+                                                </div>
+
                                             </div>
                                             <div class="col-md-12">
                                                 <button type="submit" class="btn btn-hoverable"> <span>Send Message</span>

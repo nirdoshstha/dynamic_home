@@ -20,6 +20,7 @@ use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\NewsEventsController;
 use App\Http\Controllers\backend\AdminCreateController;
 use App\Http\Controllers\backend\AlumniController;
+use App\Http\Controllers\backend\CounterController;
 use App\Http\Controllers\backend\GalleryPostController;
 use App\Http\Controllers\backend\InformationController;
 use App\Http\Controllers\backend\KindergartenController;
@@ -167,6 +168,10 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
     //Top Navbar Links
     Route::resource('top-navbar-links', TopNavbarLinkController::class)->names('top_navbar_links');
     Route::get('top-navbar-links-status', [TopNavbarLinkController::class, 'topNavbarLinkStatus'])->name('top_navbar_links.status');
+
+    //Counter
+    Route::resource('counter', CounterController::class)->names('counter');
+    Route::get('counter-status', [CounterController::class, 'counterStatus'])->name('counter.status');
 
     Route::resource('modal', ModalController::class)->names('modal');
     Route::get('modal-status', [ModalController::class, 'modalStatus'])->name('modal.status');
