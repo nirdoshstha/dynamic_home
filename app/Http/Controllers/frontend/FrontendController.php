@@ -52,6 +52,8 @@ class FrontendController extends Controller
 
         $data['counters'] = General::active()->where('type', 'counter')->take(4)->get();
 
+        $data['section_rank'] = General::active()->where('type', 'section_rank')->orderBy('rank')->get();
+
         return view('frontend.index', compact('data'));
     }
 
@@ -193,7 +195,7 @@ class FrontendController extends Controller
             'address' => 'required',
             'phone' => 'required',
             'father_name' => 'required',
-            'mother_name' => 'required', 
+            'mother_name' => 'required',
             'g-recaptcha-response' => ['required', new ReCaptcha]
 
         ]);

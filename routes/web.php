@@ -29,6 +29,7 @@ use App\Http\Controllers\backend\UsefulLinksController;
 use App\Http\Controllers\backend\upload\ImageController;
 use App\Http\Controllers\backend\ScrollingTextController;
 use App\Http\Controllers\backend\OnlineRegisterController;
+use App\Http\Controllers\backend\SectionController;
 use App\Http\Controllers\backend\TopNavbarLinkController;
 
 /*
@@ -172,6 +173,10 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
     //Counter
     Route::resource('counter', CounterController::class)->names('counter');
     Route::get('counter-status', [CounterController::class, 'counterStatus'])->name('counter.status');
+
+    //Section Rank
+    Route::resource('section', SectionController::class)->names('section');
+    Route::get('section-status', [SectionController::class, 'sectionStatus'])->name('section.status');
 
     Route::resource('modal', ModalController::class)->names('modal');
     Route::get('modal-status', [ModalController::class, 'modalStatus'])->name('modal.status');

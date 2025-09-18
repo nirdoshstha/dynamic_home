@@ -454,6 +454,32 @@
 
                                             <div class="col-6 py-3">
                                                 <div class="d-flex justify-content-between">
+                                                    <label for="floatingName" class="fw-normal text-primary">Testimonial
+                                                        design on
+                                                        Home</label>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="testimonial_design" id="inlineRadio2" value="0"
+                                                            {{ $setting->testimonial_design == '0' ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="inlineRadio2">Default</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="testimonial_design" id="inlineRadio1" value="1"
+                                                            {{ $setting->testimonial_design == 1 ? 'checked' : '' }}>
+                                                        <label class="form-check-label"
+                                                            for="inlineRadio1">Standard</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="testimonial_design" id="inlineRadio1" value="2"
+                                                            {{ $setting->testimonial_design == 2 ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="inlineRadio1">Hide</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 py-3">
+                                                <div class="d-flex justify-content-between">
                                                     <label for="floatingTextarea" class="fw-normal text-primary">
                                                         Is Visitor Counter Display on Footer?</label>
                                                     <div class="form-check form-check-inline">

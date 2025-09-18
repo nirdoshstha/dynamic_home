@@ -33,6 +33,7 @@ class Setting extends Model
         'about_design',
         'logo_design',
         'is_counter',
+        'testimonial_design',
         'brochure_image',
         'brochure',
         'background_image',

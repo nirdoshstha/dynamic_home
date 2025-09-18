@@ -1934,3 +1934,217 @@ header .navbar .dropdown-menu>li:hover>.dropdown-submenu {
         font-size: 24px;
     }
 }
+
+/* Team testimonial Section next Design Change */
+
+#team-section .team__desc p {
+    color: #4e4e4e;
+    font-size: 14px;
+}
+
+#team-section .right__team-slider .swiper {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+#team-section .right__team-slider .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    -webkit-transition: 0.3s all ease-in-out;
+    transition: 0.3s all ease-in-out;
+}
+
+#team-section .right__team-slider .swiper-slide .swiper__holder {
+    position: relative;
+}
+
+#team-section .right__team-slider .swiper-slide .swiper__holder .swiper__img {
+    position: relative;
+    width: 100%;
+    height: 18rem;
+}
+
+#team-section .right__team-slider .swiper-slide .swiper__holder .swiper__img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+#team-section .right__team-slider .swiper-slide .swiper__holder .swiper__img::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #012068;
+    opacity: 0;
+    -webkit-transition: 0.3s all ease-in-out;
+    transition: 0.3s all ease-in-out;
+}
+
+#team-section .right__team-slider .swiper-slide .swiper__holder .social_icons {
+    position: absolute;
+    top: 81%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-transition: 0.3s all ease-in-out;
+    transition: 0.3s all ease-in-out;
+}
+
+#team-section .right__team-slider .swiper-slide .swiper__holder .social_icons a {
+    color: #fff;
+    font-size: 14px;
+    padding: 0 10px;
+    text-decoration: none;
+}
+
+#team-section .right__team-slider .swiper-slide .swiper__holder .slider-desc {
+    padding: 15px 10px;
+}
+
+#team-section .right__team-slider .swiper-slide .swiper__holder .slider-desc h5 {
+    color: #012068;
+    font-weight: 700;
+    margin: 0;
+    -webkit-transition: 0.3s all ease-in-out;
+    transition: 0.3s all ease-in-out;
+}
+
+#team-section .right__team-slider .swiper-slide .swiper__holder .slider-desc span {
+    color: #181818;
+    font-size: 14px;
+    -webkit-transition: 0.3s all ease-in-out;
+    transition: 0.3s all ease-in-out;
+}
+
+#team-section .right__team-slider .swiper-slide:hover {
+    background-color: #38d200;
+}
+
+#team-section .right__team-slider .swiper-slide:hover .swiper__img::before {
+    opacity: 0.3;
+}
+
+#team-section .right__team-slider .swiper-slide:hover .social_icons {
+    top: 72%;
+}
+
+#team-section .right__team-slider .swiper-slide:hover .slider-desc h5 {
+    color: #fff;
+}
+
+#team-section .right__team-slider .swiper-slide:hover .slider-desc span {
+    color: #fff;
+}
+
+#team-section .right__team-slider .swiper-pagination {
+    -webkit-transform: translateY(1rem);
+    transform: translateY(1rem);
+}
+
+@media screen and (max-width: 992px) {
+    #team-section .right__team-slider .swiper-slide .swiper__img {
+        width: 100%;
+        height: 20rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #team-section .right__team-slider .swiper-slide .swiper__img {
+        width: 100%;
+        height: 30rem;
+    }
+}
+
+@media screen and (max-width: 512px) {
+    #team-section .right__team-slider .swiper-slide .swiper__img {
+        width: 100%;
+        height: 25rem;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    #team-section .right__team-slider .swiper-slide .swiper__img {
+        width: 100%;
+        height: 23rem;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    #team-section .right__team-slider .swiper-slide .swiper__img {
+        width: 100%;
+        height: 20rem;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    #team-section .right__team-slider .swiper-slide .swiper__img {
+        width: 100%;
+        height: 16rem;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #team-section .right__team-slider .swiper {
+        padding: 10px;
+    }
+
+    #team-section .right__team-slider .swiper-pagination {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #team-section .team__desc h1 {
+        font-size: 32px;
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 512px) {
+    #team-section .team__desc h1 {
+        font-size: 28px;
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    #team-section .team__desc h1 {
+        font-size: 24px;
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    #team-section .team__desc h1 {
+        font-size: 20px;
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    #team-section .team__desc h1 {
+        font-size: 18px;
+        margin-bottom: 1rem;
+    }
+}
+
+/* End Team testimonial Section next Design Change */

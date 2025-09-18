@@ -159,6 +159,12 @@
                         <i class="bi bi-circle"></i><span>Counter</span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('section.index') }}" class="@if (\Route::is('section.index')) active @endif">
+                        <i class="bi bi-circle"></i><span>Section Rank</span>
+                    </a>
+                </li>
             </ul>
         </li>
 
