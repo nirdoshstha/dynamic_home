@@ -29,6 +29,7 @@ use App\Http\Controllers\backend\UsefulLinksController;
 use App\Http\Controllers\backend\upload\ImageController;
 use App\Http\Controllers\backend\ScrollingTextController;
 use App\Http\Controllers\backend\OnlineRegisterController;
+use App\Http\Controllers\backend\ProgramController;
 use App\Http\Controllers\backend\SectionController;
 use App\Http\Controllers\backend\TopNavbarLinkController;
 
@@ -97,6 +98,12 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
     Route::get('kindergarten-status', [KindergartenController::class, 'kindergartenStatus'])->name('kindergarten.status');
     Route::post('kindergarten-status-menu', [KindergartenController::class, 'kindergartenStatusMenu'])->name('kindergarten.status_menu');
     Route::put('kindergarten-update/update/{id}', [KindergartenController::class, 'updatePage'])->name('kindergarten_page.update');
+
+    //Program
+    Route::resource('program', ProgramController::class)->names('program');
+    Route::get('program-status', [ProgramController::class, 'programStatus'])->name('program.status');
+    Route::post('program-status-menu', [ProgramController::class, 'programStatusMenu'])->name('program.status_menu');
+    Route::put('program-update/update/{id}', [ProgramController::class, 'updatePage'])->name('program_page.update');
 
 
     //Message

@@ -68,6 +68,13 @@
         </li>
 
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('message.index') }}">
+                <i class="bi bi-card-checklist"></i>
+                <span>Messages</span>
+            </a>
+        </li>
+
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('information.index') }}">
@@ -83,10 +90,12 @@
             </a>
         </li>
 
+
+
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('message.index') }}">
+            <a class="nav-link collapsed" href="{{ route('program.index') }}">
                 <i class="bi bi-card-checklist"></i>
-                <span>Messages</span>
+                <span>Programs</span>
             </a>
         </li>
 

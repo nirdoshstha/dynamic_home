@@ -77,6 +77,24 @@
         });
 </script>
 
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor101'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor102'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+
+
 @if (isset($data['posts']))
     <script>
         for (let i = 0; i < {{ $data['posts']->count() }}; i++) {
@@ -100,4 +118,5 @@
         }
     </script>
 @endif
+
 @stack('js')

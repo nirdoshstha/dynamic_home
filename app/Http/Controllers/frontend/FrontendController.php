@@ -21,6 +21,7 @@ use App\Models\Alumni;
 use App\Models\Download;
 use App\Models\General;
 use App\Models\Kindergarten;
+use App\Models\Program;
 use App\Rules\ReCaptcha;
 use Illuminate\Contracts\Session\Session;
 
@@ -69,6 +70,12 @@ class FrontendController extends Controller
         $data['page'] = Kindergarten::where('type', 'page')->firstOrFail();
         $data['kindergarten'] = Kindergarten::where('slug', $slug)->firstOrFail();
         return view('frontend.pages.kindergarten', compact('data'));
+    }
+
+    public function programs($slug)
+    {
+        $data['program'] = Program::where('slug', $slug)->first();
+        return view('frontend.pages.program', compact('data'));
     }
 
     public function alumni()

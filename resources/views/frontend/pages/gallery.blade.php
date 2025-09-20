@@ -14,8 +14,8 @@
             <div class="top__header-wrappper"
                 style="background-image: url('{{ asset('storage/' . $data['page']->image) }}');">
                 <div class="overlay">
-                    <section id="subheader-title">
-                        <div class="container">
+                    <section>
+                        <div class="container text-light shadow-text">
                             <h1>{{ $data['page']->title ?? '' }}</h1>
                         </div>
                     </section>
@@ -24,9 +24,9 @@
         @else
             <div class="top__header-wrappper" style="background-image: url('{{ asset('frontend/assets/img/banner.jpg') }}');">
                 <div class="overlay">
-                    <section id="subheader-title">
-                        <div class="container">
-                            <h1>{{ $data['page']->title ?? '' }}</h1>
+                    <section>
+                        <div class="container text-light shadow-text">
+                            <h1>Gallery</h1>
                         </div>
                     </section>
                 </div>

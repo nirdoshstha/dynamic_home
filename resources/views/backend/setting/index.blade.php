@@ -507,7 +507,7 @@
                                                             style="margin-left: 15px;">
                                                     @endif
 
-                                                    <label for="floatingLogo">Background Image <span
+                                                    <label for="floatingLogo">About Us Background Image <span
                                                             class="text-danger">image: max 2mb</span></label>
                                                 </div>
                                                 <span class="text-danger">{{ $errors->first('logo') }}</span>

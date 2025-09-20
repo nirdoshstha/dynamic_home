@@ -39,8 +39,6 @@ class SectionController extends BackendBaseController
             $data = $request->all();
 
             $section = $this->model->create($data + [
-                // 'link' => Str::remove(' ', '_', Str::camel($request->name)),
-                // 'link' => Str::remove('_', Str::camel($request->name)),
                 'link' => ucfirst(str_replace('_', ' ', str_replace(' ', ' ', $request->name))),
                 'type' => 'section_rank',
                 'created_by' => auth()->user()->id,

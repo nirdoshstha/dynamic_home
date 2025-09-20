@@ -19,8 +19,6 @@
 
     @stack('css')
     <style>
-     
-
         header .top__header {
             padding: 5px 0;
             background-color: {{ setting()?->primary_color }};

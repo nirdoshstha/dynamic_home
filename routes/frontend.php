@@ -20,6 +20,10 @@ Route::get('alumni', [FrontendController::class, 'alumni'])->name('frontend.alum
 //Messages
 Route::get('message/{slug}', [FrontendController::class, 'messages'])->name('frontend.message');
 
+
+//Programs
+Route::get('program/{slug}', [FrontendController::class, 'programs'])->name('frontend.program');
+
 //About Us
 Route::get('about-us/{slug}', [FrontendController::class, 'aboutUs'])->name('frontend.about_us');
 Route::get('about-us', [FrontendController::class, 'aboutSingle'])->name('frontend.about_single');

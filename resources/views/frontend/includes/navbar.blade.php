@@ -214,6 +214,25 @@
                     </li>
                 @endif
 
+
+                @if (program() && program()?->status == 0)
+                    <li class="nav-item dropdown {{ Request::is('program/*') ? 'active' : '' }}">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Program
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+
+                            @foreach (programs() as $program)
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="{{ route('frontend.program', $program->slug) }}">{{ $program->title }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endif
+
                 @if (album() && album()?->status == 0)
                     <li class="nav-item dropdown {{ Request::is('photo-album', 'video-gallery') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"

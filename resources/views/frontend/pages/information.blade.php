@@ -4,15 +4,16 @@
     {{ $data['information']->title ?? '' }}
 @endsection
 
+
 @section('content')
     @if (information() && information()->status == 0)
         @if (isset($data['page']->image))
             <div class="top__header-wrappper"
                 style="background-image: url('{{ asset('storage/' . $data['information']->image) }}');">
                 <div class="overlay">
-                    <section id="subheader-title">
-                        <div class="container">
-                            <h1>{{ $data['information']->title ?? '' }}</h1>
+                    <section>
+                        <div class="container text-light shadow-text">
+                            <h1>{{ $data['page']->title ?? '' }} >{{ $data['information']->title ?? '' }}</h1>
                         </div>
                     </section>
                 </div>
@@ -20,8 +21,8 @@
         @else
             <div class="top__header-wrappper" style="background-image: url('{{ asset('frontend/assets/img/banner.jpg') }}');">
                 <div class="overlay">
-                    <section id="subheader-title">
-                        <div class="container">
+                    <section>
+                        <div class="container text-light shadow-text">
                             <h1>{{ $data['information']->title ?? '' }}</h1>
                         </div>
                     </section>

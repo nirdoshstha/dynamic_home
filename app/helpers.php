@@ -15,6 +15,7 @@ use App\Models\Kindergarten;
 use App\Models\NewsEvent;
 use App\Models\Notice;
 use App\Models\OnlineRegistration;
+use App\Models\Program;
 use App\Models\ScrollingText;
 use Illuminate\Support\Facades\File;
 
@@ -63,6 +64,22 @@ if (!function_exists('kindergartens')) {
     {
         $kindergartens = Kindergarten::where('type', 'post')->where('status', '0')->get();
         return $kindergartens;
+    }
+}
+
+if (!function_exists('program')) {
+    function program()
+    {
+        $program = Program::where('type', 'page')->first();
+        return $program;
+    }
+}
+
+if (!function_exists('programs')) {
+    function programs()
+    {
+        $programs = Program::active()->where('type', 'post')->get();
+        return $programs;
     }
 }
 
@@ -153,7 +170,7 @@ if (!function_exists('setting')) {
 if (!function_exists('social_media')) {
     function social_media()
     {
-        $socials = General::where('type', 'setting')->get();
+        $socials = General::where('type', 'setting')->orderBy('rank')->get();
         return $socials;
     }
 }

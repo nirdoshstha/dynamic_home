@@ -115,7 +115,7 @@ a {
     align-items: center;
 }
 
-.top__header-wrappper .overlay #subheader-title h1 {
+.top__header-wrappper .overlay #subheader-title2 h1 {
     font-weight: 700;
     font-size: 33px;
     color: #fff;
@@ -2148,3 +2148,160 @@ header .navbar .dropdown-menu>li:hover>.dropdown-submenu {
 }
 
 /* End Team testimonial Section next Design Change */
+
+/*start Program css */
+
+#university-section .uni-logo {
+    width: 15 rem;
+}
+
+#university-section .uni-desc p {
+    font - size: 14 px;
+}
+
+.side__menu-wrapper .slide__menu-bar {
+    background-color: #ebebeb;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+.side__menu-wrapper .slide__menu-bar ul {
+    margin: 0px;
+    padding: 0px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+.side__menu-wrapper .slide__menu-bar ul li {
+    padding: 0px;
+    font-size: 14px;
+}
+
+.side__menu-wrapper .slide__menu-bar ul li a {
+    color: #181818;
+    -webkit-transition: 0.3s all ease-in-out;
+    transition: 0.3s all ease-in-out;
+    font-weight: 500;
+}
+
+.side__menu-wrapper .slide__menu-bar ul li a:hover {
+    color: #38d200;
+}
+
+.side__menu-wrapper .slide__menu-bar p {
+    color: #181818;
+    font-weight: 500;
+}
+
+.side__img {
+    border-radius: 8px;
+    overflow: hidden;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}
+
+.slide__menu-bar {
+    background-color: #ebebeb;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+.slide__menu-bar p {
+    color: #181818;
+    font-weight: 500;
+}
+
+.slide__menu-bar .side__courses .title h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1d225d;
+}
+
+.slide__menu-bar .side__courses span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.slide__menu-bar .side__courses ul li {
+    -webkit-transition: 0.3s all ease-in-out;
+    transition: 0.3s all ease-in-out;
+}
+
+.slide__menu-bar .side__courses ul li span {
+    margin-top: 3px;
+}
+
+.slide__menu-bar .side__courses ul li a {
+    color: #181818;
+    font-size: 14px;
+    font-weight: 500;
+    -webkit-transition: 0.3s all ease-in-out;
+    transition: 0.3s all ease-in-out;
+}
+
+.slide__menu-bar .side__courses ul li:hover {
+    color: #38d200;
+}
+
+.slide__menu-bar .side__courses ul li:hover a {
+    color: #38d200;
+}
+
+
+.top__header-wrappper #subheader-title {
+    margin-top: -96px;
+}
+
+.top__header-wrappper #subheader-title h1 {
+    background: #38d200;
+    padding: 30px 80px;
+    font-weight: 700;
+    display: inline-block;
+    font-size: 30px;
+    position: relative;
+    padding-left: 0;
+    margin-bottom: 0;
+    color: #fff;
+    border-top-right-radius: 48px;
+    border-bottom-right-radius: 0;
+}
+
+.top__header-wrappper #subheader-title h1::before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 400em;
+    position: absolute;
+    top: 0;
+    left: -400em;
+    background: #38d200;
+    border-radius: 0;
+    opacity: 1;
+    z-index: 1;
+}
+
+@media screen and (max-width: 767px) {
+    .top__header-wrappper #subheader-title {
+        margin-top: -50px;
+    }
+
+    .top__header-wrappper #subheader-title h1 {
+        padding: 10px 30px;
+        font-size: 24px;
+    }
+}
+
+
+.shadow-text {
+    text-shadow: 0 0 10px rgba(14, 13, 13, 0.9);
+}
+
+.glow-dark {
+    text-shadow:
+        0 0 5px rgba(0, 0, 0, 0.8),
+        0 0 10px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+/* End program css */
