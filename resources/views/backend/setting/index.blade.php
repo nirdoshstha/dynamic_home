@@ -497,6 +497,16 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-6">
+                                                <div class="form-floating">
+                                                    <textarea class="form-control text-muted" name="counter_code" placeholder="Visitor Counter Code"
+                                                        id="floatingTextarea" style="height: 80px;">{{ isset($setting) ? $setting->counter_code : '' }}</textarea>
+                                                    <span class="text-danger">{{ $errors->first('counter_code') }}</span>
+                                                    <label for="floatingTextarea">Visitor Counter Code</label>
+                                                </div>
+                                            </div>
+
+
                                             <div class="col-md-6">
                                                 <div class="form-floating d-flex justify-content-between">
                                                     <input type="file" name="background_image" class="form-control"
@@ -512,7 +522,10 @@
                                                 </div>
                                                 <span class="text-danger">{{ $errors->first('logo') }}</span>
                                             </div>
-                                            <div class="col-md-6">
+
+
+                                            {{-- Image Not necessary --}}
+                                            {{-- <div class="col-md-6">
                                                 <div class="form-floating d-flex justify-content-between">
                                                     <input type="file" name="school_image" class="form-control"
                                                         id="floatingFavicon" placeholder="Fab Icon">
@@ -527,6 +540,7 @@
                                                 </div>
                                                 <span class="text-danger">{{ $errors->first('school_image') }}</span>
                                             </div>
+
                                             <div class="col-md-6">
                                                 <div class="form-floating d-flex justify-content-between">
                                                     <input type="file" name="college_image" class="form-control"
@@ -565,6 +579,7 @@
                                                 </div>
                                                 <span class="text-danger">{{ $errors->first('popup_image') }}</span>
                                             </div>
+
                                             <div class="col-md-6">
                                                 <div class="form-floating d-flex justify-content-between">
                                                     <input type="file" name="master_logo" class="form-control"
@@ -609,7 +624,8 @@
 
                                                     <label for="floatingcollege_title">College Title</label>
                                                 </div>
-                                            </div>
+                                            </div> --}}
+                                            {{-- End Image Not necessary --}}
 
 
 

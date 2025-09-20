@@ -20,13 +20,7 @@
                 </div>
                 {{-- <h6>Visitor Counter</h6>     --}}
                 @if (setting() && setting()?->is_counter == 0)
-                    <div id="sfc228xt1t2wlsdgqsrpl9txwfng492sajl"></div>
-                    <script type="text/javascript"
-                        src="https://counter5.optistats.ovh/private/counter.js?c=228xt1t2wlsdgqsrpl9txwfng492sajl&down=async" async>
-                    </script>
-                    <noscript><a href="https://www.freecounterstat.com" title="free counter"><img
-                                src="https://counter5.optistats.ovh/private/freecounterstat.php?c=228xt1t2wlsdgqsrpl9txwfng492sajl"
-                                border="0" title="free counter" alt="free counter"></a></noscript>
+                    {!! setting()?->counter_code !!}
                 @endif
 
             </div>
